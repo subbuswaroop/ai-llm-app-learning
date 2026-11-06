@@ -13,10 +13,15 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
-    "zod": "^4.6.7"
+    "dotenv": "^18.0.9",
+    "ollama": "^0.6.4",
+    "openai": "^7.51.0",
+    "zod": "^4.6.7",
+    "zod-to-json-schema": "^3.25.2"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vitest": "^5.1.0"
   },
