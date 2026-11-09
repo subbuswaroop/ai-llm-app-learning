@@ -5,3 +5,4 @@ dist/
 .env.*
 
 evals/results/*.log
+evals/results/injection-live-outputs.jsonl
