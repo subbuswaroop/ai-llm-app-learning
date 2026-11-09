@@ -1,5 +1,5 @@
 import { ZodError } from "zod";
-import type { LlmProvider } from "../llm/llm-provider";
+import type { AnalyzeOptions, LlmProvider } from "../llm/llm-provider";
 import { JobAnalysis, JobAnalysisSchema } from "../schemas/job-analysis.schema";
 import type { AIResult } from "../types/ai-execution";
 
@@ -45,13 +45,18 @@ export class MockLlmProvider implements LlmProvider {
 export class JobAnalysisService {
   constructor(private readonly provider: LlmProvider = new MockLlmProvider()) {}
 
-  async analyze(jobDescription: string): Promise<AIResult<JobAnalysis>> {
+  async analyze(
+    jobDescription: string,
+    options: AnalyzeOptions = {}
+  ): Promise<AIResult<JobAnalysis>> {
     if (jobDescription.trim().length === 0) {
       throw new EmptyJobDescriptionError();
     }
 
-    const { data: raw, metadata } =
-      await this.provider.analyzeJobDescription(jobDescription);
+    const { data: raw, metadata } = await this.provider.analyzeJobDescription(
+      jobDescription,
+      options
+    );
 
     const validation = JobAnalysisSchema.safeParse(raw);
     if (!validation.success) {

@@ -41,6 +41,26 @@ describe("JobAnalysisService", () => {
     expect(result.metadata).toEqual(metadata);
   });
 
+  it("passes optional company context to the provider", async () => {
+    const { provider, analyzeJobDescription } = providerReturning(MOCK_JOB_ANALYSIS);
+
+    await new JobAnalysisService(provider).analyze("A job", {
+      companyContext: "A fintech startup.",
+    });
+
+    expect(analyzeJobDescription).toHaveBeenCalledWith("A job", {
+      companyContext: "A fintech startup.",
+    });
+  });
+
+  it("works without company context", async () => {
+    const { provider, analyzeJobDescription } = providerReturning(MOCK_JOB_ANALYSIS);
+
+    await new JobAnalysisService(provider).analyze("A job");
+
+    expect(analyzeJobDescription).toHaveBeenCalledWith("A job", {});
+  });
+
   it("rejects a response with an invalid seniority value", async () => {
     const { provider } = providerReturning({
       ...MOCK_JOB_ANALYSIS,

@@ -2,7 +2,7 @@
 
 An AI-powered recruitment assistant built with TypeScript. It analyzes a job description and returns a structured summary: required skills, seniority level and suggested interview topics.
 
-The LLM is currently mocked. Every response, mocked or real, is validated against a Zod schema before the rest of the app can use it.
+Development runs against a real local LLM through Ollama. Tests use a mock provider so they are fast and repeatable. Either way, every response is validated against a Zod schema before the rest of the app can use it.
 
 ## Project Structure
 
@@ -12,7 +12,8 @@ ai-recruitment-assistant/
 │   ├── api/        # HTTP routes / controllers
 │   ├── services/   # Business logic (job-analysis.service.ts)
 │   ├── schemas/    # Zod schemas (job-analysis.schema.ts)
-│   ├── llm/        # LLM client and prompt logic
+│   ├── prompts/    # Versioned prompts, few-shot examples, prompt registry
+│   ├── llm/        # LlmProvider interface, Ollama adapter, LLM errors
 │   └── types/      # Shared TypeScript types
 ├── tests/          # Vitest tests
 ├── package.json
@@ -20,14 +21,102 @@ ai-recruitment-assistant/
 └── README.md
 ```
 
+## LLM Providers
+
+The service depends on a small interface, `LlmProvider` ([src/llm/llm-provider.ts](src/llm/llm-provider.ts)), not on a specific LLM. There are two implementations:
+
+| Provider | Used for | Where |
+|---|---|---|
+| `OllamaProvider` | **Actual development.** Calls a real model running locally through Ollama. | [src/llm/ollama.provider.ts](src/llm/ollama.provider.ts) |
+| `MockLlmProvider` | **Deterministic testing.** Returns a fixed response and never touches the network. | [src/services/job-analysis.service.ts](src/services/job-analysis.service.ts) |
+
+### Ollama: the real provider
+
+`OllamaProvider` sends the job description to a local model and asks Ollama to constrain its output to the JSON Schema generated from `JobAnalysisSchema`. It handles only the connection: timeouts, unreachable server, and parsing the JSON. It returns the parsed data as `unknown`, plus execution metadata (model name, input and output token counts, duration). It does not decide whether the result is valid.
+
+Defaults (all can be overridden through the constructor): host `http://127.0.0.1:11434`, model `gemma4`, timeout 120 seconds, and a limit of 1500 generated tokens per call (`maxOutputTokens`, sent to Ollama as `num_predict`).
+
+The token limit stops a runaway model from generating until the timeout. If the model hits it, the provider throws `LlmOutputTruncatedError` instead of returning a half-finished answer. The default is based on measurement: across 54 runs `gemma4` generated 28-352 tokens with the few-shot prompt and 305-850 with the zero-shot prompt, so 1500 leaves about 1.8x headroom over the largest value seen. Re-measure it when you change the model, the prompt, or the typical job description length.
+
+### Mock: the test provider
+
+A real model can give a slightly different answer every run, and it needs a GPU and a running server. That is bad for tests. `MockLlmProvider` always returns the same analysis with placeholder metadata, so tests give the same result every time, on any machine, in milliseconds. Tests for failure cases (bad JSON, invalid seniority, provider errors) use small stub providers in the same way.
+
+### Dependency injection: the service accepts either
+
+`JobAnalysisService` receives its provider through the constructor. It never creates an Ollama client itself:
+
+```ts
+// Real model (development)
+const service = new JobAnalysisService(new OllamaProvider());
+
+// Deterministic mock (tests). This is also the default with no argument.
+const service = new JobAnalysisService(new MockLlmProvider());
+const service = new JobAnalysisService();
+
+// Any object with the right method works, such as a stub for one test case
+const service = new JobAnalysisService({
+  analyzeJobDescription: async () => ({ data: { seniority: "principal" }, metadata }),
+});
+```
+
+The service owns the business rules (rejecting empty input, validating the result with Zod) and gets the same behavior from every provider. Because the provider is passed in, switching to another LLM later means writing a new class that implements `LlmProvider`. The service and its tests don't change.
+
+## Prompts
+
+What we say to the model lives in [src/prompts/](src/prompts/), separate from the Ollama provider. The provider asks the prompt module for the messages and sends them. It contains no prompt text of its own, so you can change the wording or add a new LLM provider without touching the other.
+
+| File | What it holds |
+|---|---|
+| [job-analysis.prompt.ts](src/prompts/job-analysis.prompt.ts) | The reusable system prompt, and the builder that turns a request into chat messages |
+| [job-analysis.examples.ts](src/prompts/job-analysis.examples.ts) | Few-shot examples, typed against the schema |
+| [prompt-registry.ts](src/prompts/prompt-registry.ts) | Every released prompt by version, and which one is current |
+
+**How a request becomes messages:**
+
+```
+system   → the reusable instructions (same for every request)
+user     → example 1 input        ┐
+assistant→ example 1 JSON answer  │ few-shot examples
+user     → example 2 input        │
+assistant→ example 2 JSON answer  ┘
+user     → the real request: optional <company_context> + <job_description>
+```
+
+```ts
+const prompt = getJobAnalysisPrompt();            // current version
+prompt.buildMessages({
+  jobDescription: "Senior Go engineer, 8 years...",
+  companyContext: "A payments company.",          // optional
+});
+```
+
+- **Dynamic job description and optional company context.** Both go in the final user message, each in its own tag. Empty or whitespace-only company context is left out.
+- **Few-shot examples.** They cover junior, mid and senior roles so they don't push the model toward one level. One example has company context that must *not* become a required skill. Each example is formatted exactly like the real input, and the tests check that every example is valid against the Zod schema.
+- **Prompt version.** Every result records the `promptVersion` that produced it in its metadata. A released version's text is never edited. To change the prompt, add a new version to the registry and update `CURRENT_JOB_ANALYSIS_PROMPT_VERSION`. Old versions stay available so old results can be reproduced and two versions can be compared on the same inputs. Pin a version with `new OllamaProvider({ promptVersion: "1.0.0" })`; an unknown version fails at startup.
+- **Prompt injection.** The job description and company context are user-supplied, so the system prompt says to treat anything inside the tags as data. The builder also rewrites any `<job_description>` or `<company_context>` tag found inside that text (for example `</job_description>` followed by new instructions) so the text can't close the data section early. This reduces the risk but can't remove it, because the model may still be influenced by text it reads. Validating the output with Zod and reviewing results remain necessary.
+
+### Zero-shot vs few-shot
+
+`analyzeJobDescription(description, { strategy })` accepts `"zero-shot"` (no examples) or `"few-shot"` (the default). Both use the same system prompt and the same real input, so the examples are the only difference, and the chosen strategy is recorded in the execution metadata as `promptStrategy`.
+
+We compared them on 9 labelled job descriptions, 3 runs each, against a real model. The result: few-shot did **not** improve accuracy. Seniority was right every time for both, and few-shot returned fewer of the required skills. It was about 7x faster (median 1.4 s vs 9.4 s) with far fewer output tokens. The sample is small and the full limitations are in [docs/prompt-strategy-comparison.md](docs/prompt-strategy-comparison.md). Re-run it with `npm run eval:strategies` (needs Ollama running; not part of `npm test`).
+
 ## Getting Started
 
 Requires Node 26 or later (see `.nvmrc`).
 
 ```bash
 npm install
-npm test        # run the tests
+npm test        # run the tests; no Ollama needed
 npm run build   # compile to dist/
+```
+
+To run against a real model, install [Ollama](https://ollama.com), pull the model, then run the example in `src/index.ts`:
+
+```bash
+ollama pull gemma4
+npx tsx src/index.ts
 ```
 
 ---
