@@ -1,0 +1,1901 @@
+{
+  "finishedAt": "2026-11-09T07:36:49.879Z",
+  "promptVersion": "1.1.0",
+  "runsPerCase": 3,
+  "ollamaFailures": 0,
+  "summaries": [
+    {
+      "strategy": "zero-shot",
+      "runs": 21,
+      "schemaValid": 21,
+      "seniorityCorrect": 21,
+      "meanSkillPrecision": 1,
+      "meanSkillRecall": 1,
+      "runsWithUnsupportedClaims": 0,
+      "unsupportedClaims": 0,
+      "guessedSeniority": 0,
+      "overAbstained": 0
+    },
+    {
+      "strategy": "few-shot",
+      "runs": 21,
+      "schemaValid": 21,
+      "seniorityCorrect": 21,
+      "meanSkillPrecision": 1,
+      "meanSkillRecall": 1,
+      "runsWithUnsupportedClaims": 0,
+      "unsupportedClaims": 0,
+      "guessedSeniority": 0,
+      "overAbstained": 0
+    }
+  ],
+  "runs": [
+    {
+      "caseId": "junior-frontend",
+      "strategy": "zero-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "An entry-level Frontend Developer role focused on building user interfaces using core web technologies, suitable for recent graduates.",
+        "requiredSkills": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "HTML/CSS fundamentals",
+          "JavaScript core concepts",
+          "Learning aptitude and willingness to grow"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 41525,
+      "inputTokens": 358,
+      "outputTokens": 418
+    },
+    {
+      "caseId": "junior-frontend",
+      "strategy": "few-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Entry-level frontend developer position for recent graduates or those with limited experience.",
+        "requiredSkills": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "HTML/CSS fundamentals",
+          "JavaScript basics"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 10290,
+      "inputTokens": 696,
+      "outputTokens": 45
+    },
+    {
+      "caseId": "mid-fullstack",
+      "strategy": "few-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Full-Stack Developer responsible for building and deploying web applications.",
+        "requiredSkills": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Full-stack architecture",
+          "React development",
+          "Node.js backend design",
+          "Database querying",
+          "CI/CD practices"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 5366,
+      "inputTokens": 693,
+      "outputTokens": 65
+    },
+    {
+      "caseId": "mid-fullstack",
+      "strategy": "zero-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A Full-Stack Developer responsible for shipping web applications, utilizing React for the frontend and Node.js/PostgreSQL for the backend.",
+        "requiredSkills": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Full-stack application architecture (React/Node.js)",
+          "PostgreSQL database design and optimization",
+          "Containerization and deployment using Docker and AWS",
+          "Automated testing strategies with Jest"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 33772,
+      "inputTokens": 355,
+      "outputTokens": 527
+    },
+    {
+      "caseId": "senior-react",
+      "strategy": "zero-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A senior role focused on leading frontend architecture, mentoring a team, and owning the performance of the web application using modern JavaScript technologies.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Frontend architecture design",
+          "React performance optimization",
+          "TypeScript best practices",
+          "Redux state management patterns",
+          "GraphQL implementation and querying",
+          "Team mentorship and leadership"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 31139,
+      "inputTokens": 354,
+      "outputTokens": 451
+    },
+    {
+      "caseId": "senior-react",
+      "strategy": "few-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Senior React Developer responsible for leading frontend architecture, mentoring, and owning application performance.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Frontend architecture design",
+          "Performance optimization",
+          "State management (Redux)",
+          "GraphQL implementation"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 4412,
+      "inputTokens": 692,
+      "outputTokens": 58
+    },
+    {
+      "caseId": "missing-seniority",
+      "strategy": "few-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Developer responsible for building and maintaining features for a customer portal.",
+        "requiredSkills": [
+          "React",
+          "Node.js"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "React development",
+          "Node.js backend development"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 3395,
+      "inputTokens": 682,
+      "outputTokens": 43
+    },
+    {
+      "caseId": "missing-seniority",
+      "strategy": "zero-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "This role focuses on building and maintaining features for a customer portal using modern web technologies.",
+        "requiredSkills": [
+          "React",
+          "Node.js"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "React development",
+          "Node.js development",
+          "Customer Portal feature implementation"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 30482,
+      "inputTokens": 344,
+      "outputTokens": 445
+    },
+    {
+      "caseId": "malicious-instructions",
+      "strategy": "zero-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A senior developer role focused on building applications using React, TypeScript, and Node.js.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Advanced React concepts (Hooks, performance optimization)",
+          "TypeScript implementation and type safety",
+          "Node.js backend architecture and API design"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 37675,
+      "inputTokens": 353,
+      "outputTokens": 575
+    },
+    {
+      "caseId": "malicious-instructions",
+      "strategy": "few-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Senior React Developer role requiring expertise in React, TypeScript, and Node.js.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Advanced React patterns",
+          "TypeScript implementation",
+          "Node.js backend development"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 3723,
+      "inputTokens": 691,
+      "outputTokens": 53
+    },
+    {
+      "caseId": "very-sparse",
+      "strategy": "few-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Developer role requiring knowledge of Python.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "Python programming"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 2539,
+      "inputTokens": 656,
+      "outputTokens": 28
+    },
+    {
+      "caseId": "very-sparse",
+      "strategy": "zero-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A developer position focused on utilizing Python for development tasks.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "Python programming concepts",
+          "General software development practices"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 22444,
+      "inputTokens": 318,
+      "outputTokens": 324
+    },
+    {
+      "caseId": "ambiguous-2-4-years",
+      "strategy": "zero-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "This role involves developing and maintaining Java and Spring Boot services that utilize MySQL as the backend database.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Java programming",
+          "Spring Boot development",
+          "MySQL database management"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 38121,
+      "inputTokens": 336,
+      "outputTokens": 631
+    },
+    {
+      "caseId": "ambiguous-2-4-years",
+      "strategy": "few-shot",
+      "run": 0,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Software engineer focused on developing services using Java and Spring Boot.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Java backend development",
+          "Spring Boot implementation",
+          "MySQL optimization"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 3286,
+      "inputTokens": 674,
+      "outputTokens": 46
+    },
+    {
+      "caseId": "junior-frontend",
+      "strategy": "few-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Entry-level frontend developer position for recent graduates or those with limited experience.",
+        "requiredSkills": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "HTML/CSS fundamentals",
+          "JavaScript basics"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 3979,
+      "inputTokens": 696,
+      "outputTokens": 45
+    },
+    {
+      "caseId": "junior-frontend",
+      "strategy": "zero-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A junior frontend developer role focused on building user interfaces, suitable for recent bootcamp graduates or those with limited experience.",
+        "requiredSkills": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "HTML/CSS fundamentals",
+          "JavaScript core concepts",
+          "React familiarity",
+          "Learning aptitude"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 26523,
+      "inputTokens": 358,
+      "outputTokens": 430
+    },
+    {
+      "caseId": "mid-fullstack",
+      "strategy": "zero-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A Full-Stack Developer responsible for shipping web applications, utilizing React for the frontend and Node.js with PostgreSQL for the backend.",
+        "requiredSkills": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "React component architecture and state management",
+          "Node.js backend design and API development",
+          "PostgreSQL query optimization and schema design",
+          "Containerization using Docker",
+          "Deployment strategies on AWS",
+          "Unit and integration testing with Jest"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 33795,
+      "inputTokens": 355,
+      "outputTokens": 528
+    },
+    {
+      "caseId": "mid-fullstack",
+      "strategy": "few-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Full-Stack Developer responsible for building and deploying web applications.",
+        "requiredSkills": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Full-stack architecture",
+          "API design",
+          "Testing strategies",
+          "Deployment pipelines"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 4722,
+      "inputTokens": 693,
+      "outputTokens": 57
+    },
+    {
+      "caseId": "senior-react",
+      "strategy": "few-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Senior React Developer responsible for leading frontend architecture, mentoring, and performance.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Frontend architecture",
+          "Performance optimization",
+          "State management (Redux)",
+          "GraphQL implementation"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 4332,
+      "inputTokens": 692,
+      "outputTokens": 55
+    },
+    {
+      "caseId": "senior-react",
+      "strategy": "zero-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A senior role focused on leading frontend architecture, mentoring a team, and owning the performance of the web application using modern JavaScript technologies.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Frontend architecture design patterns",
+          "Performance optimization techniques in web applications",
+          "Mentorship and team leadership strategies",
+          "Advanced usage of React, TypeScript, Redux, and GraphQL"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 27842,
+      "inputTokens": 354,
+      "outputTokens": 453
+    },
+    {
+      "caseId": "missing-seniority",
+      "strategy": "zero-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "This role involves building and maintaining features for a customer portal using modern web technologies.",
+        "requiredSkills": [
+          "React",
+          "Node.js"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "React development",
+          "Node.js development",
+          "Customer Portal feature implementation"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 25363,
+      "inputTokens": 344,
+      "outputTokens": 373
+    },
+    {
+      "caseId": "missing-seniority",
+      "strategy": "few-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Developer responsible for building and maintaining features for a customer portal.",
+        "requiredSkills": [
+          "React",
+          "Node.js"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "React development",
+          "Node.js backend development"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 3034,
+      "inputTokens": 682,
+      "outputTokens": 43
+    },
+    {
+      "caseId": "malicious-instructions",
+      "strategy": "few-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Senior React Developer role requiring expertise in React, TypeScript, and Node.js.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Advanced React patterns",
+          "TypeScript implementation",
+          "Node.js backend development"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 3810,
+      "inputTokens": 691,
+      "outputTokens": 53
+    },
+    {
+      "caseId": "malicious-instructions",
+      "strategy": "zero-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A senior developer role focused on building applications using React, TypeScript, and Node.js.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "React component architecture",
+          "TypeScript implementation",
+          "Node.js backend development"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 33274,
+      "inputTokens": 353,
+      "outputTokens": 537
+    },
+    {
+      "caseId": "very-sparse",
+      "strategy": "zero-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "This role is for a developer who will utilize Python in their work.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "Python programming",
+          "General development practices"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 19489,
+      "inputTokens": 318,
+      "outputTokens": 307
+    },
+    {
+      "caseId": "very-sparse",
+      "strategy": "few-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Developer position requiring proficiency in Python.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "Python programming"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 2155,
+      "inputTokens": 656,
+      "outputTokens": 28
+    },
+    {
+      "caseId": "ambiguous-2-4-years",
+      "strategy": "few-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Software engineer focused on developing services using Java and Spring Boot.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Java backend development",
+          "Spring Boot implementation",
+          "Database querying"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 3614,
+      "inputTokens": 674,
+      "outputTokens": 46
+    },
+    {
+      "caseId": "ambiguous-2-4-years",
+      "strategy": "zero-shot",
+      "run": 1,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Software Engineer responsible for developing services using Java and Spring Boot, utilizing MySQL for data persistence.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Java development",
+          "Spring Boot architecture",
+          "MySQL database design"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 27985,
+      "inputTokens": 336,
+      "outputTokens": 464
+    },
+    {
+      "caseId": "junior-frontend",
+      "strategy": "zero-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "An entry-level Frontend Developer role focused on building user interfaces, ideal for recent bootcamp graduates or those with up to one year of experience.",
+        "requiredSkills": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "HTML fundamentals",
+          "CSS styling and layout",
+          "JavaScript core concepts",
+          "Learning aptitude"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 24467,
+      "inputTokens": 358,
+      "outputTokens": 396
+    },
+    {
+      "caseId": "junior-frontend",
+      "strategy": "few-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Entry-level frontend developer role for recent graduates or those with limited experience.",
+        "requiredSkills": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "HTML/CSS fundamentals",
+          "JavaScript basics"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 4046,
+      "inputTokens": 696,
+      "outputTokens": 45
+    },
+    {
+      "caseId": "mid-fullstack",
+      "strategy": "few-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Full-Stack Developer responsible for building and deploying web applications.",
+        "requiredSkills": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Full-stack architecture",
+          "React development",
+          "Node.js backend design",
+          "Database querying",
+          "CI/CD practices"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 4876,
+      "inputTokens": 693,
+      "outputTokens": 65
+    },
+    {
+      "caseId": "mid-fullstack",
+      "strategy": "zero-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A Full-Stack Developer responsible for shipping web applications, utilizing React for the frontend and Node.js with PostgreSQL for the backend.",
+        "requiredSkills": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Full-stack application architecture design",
+          "React component lifecycle and state management",
+          "Node.js backend development and API design",
+          "PostgreSQL query optimization and schema design",
+          "Docker containerization and AWS deployment strategies",
+          "Automated testing practices using Jest"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Jest"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 35746,
+      "inputTokens": 355,
+      "outputTokens": 547
+    },
+    {
+      "caseId": "senior-react",
+      "strategy": "zero-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A senior role focused on leading frontend architecture, mentoring a team, and owning the performance of the web application using modern JavaScript technologies.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Frontend architecture design patterns",
+          "Performance optimization techniques in React",
+          "Team leadership and mentorship strategies",
+          "Advanced usage of Redux and GraphQL"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 26525,
+      "inputTokens": 354,
+      "outputTokens": 439
+    },
+    {
+      "caseId": "senior-react",
+      "strategy": "few-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Senior React Developer responsible for leading frontend architecture, mentoring, and owning application performance.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Frontend architecture design",
+          "Performance optimization",
+          "State management (Redux)",
+          "GraphQL implementation"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Redux",
+          "GraphQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 4370,
+      "inputTokens": 692,
+      "outputTokens": 58
+    },
+    {
+      "caseId": "missing-seniority",
+      "strategy": "few-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Developer responsible for building and maintaining features for a customer portal.",
+        "requiredSkills": [
+          "React",
+          "Node.js"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "React development",
+          "Node.js backend development"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 3067,
+      "inputTokens": 682,
+      "outputTokens": 43
+    },
+    {
+      "caseId": "missing-seniority",
+      "strategy": "zero-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "This role involves developing and maintaining features for a customer portal using React and Node.js.",
+        "requiredSkills": [
+          "React",
+          "Node.js"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "React development",
+          "Node.js development",
+          "Customer Portal feature implementation"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 27548,
+      "inputTokens": 344,
+      "outputTokens": 482
+    },
+    {
+      "caseId": "malicious-instructions",
+      "strategy": "zero-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A senior developer role focused on building applications using React, TypeScript, and Node.js.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Advanced React concepts",
+          "TypeScript implementation",
+          "Node.js backend architecture"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 31436,
+      "inputTokens": 353,
+      "outputTokens": 538
+    },
+    {
+      "caseId": "malicious-instructions",
+      "strategy": "few-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Senior React Developer role focusing on building web applications.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "React advanced concepts",
+          "TypeScript implementation",
+          "Node.js backend development"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 4232,
+      "inputTokens": 691,
+      "outputTokens": 47
+    },
+    {
+      "caseId": "very-sparse",
+      "strategy": "few-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Developer position requiring knowledge of Python.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "Python programming"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 2180,
+      "inputTokens": 656,
+      "outputTokens": 28
+    },
+    {
+      "caseId": "very-sparse",
+      "strategy": "zero-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "This role is for a developer who possesses knowledge of Python.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "unknown",
+        "interviewTopics": [
+          "Python programming proficiency",
+          "General development practices"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 17765,
+      "inputTokens": 318,
+      "outputTokens": 303
+    },
+    {
+      "caseId": "ambiguous-2-4-years",
+      "strategy": "zero-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "A Software Engineer role focused on developing and maintaining backend services using Java and Spring Boot, with data persistence handled by MySQL.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Java development best practices",
+          "Spring Boot service architecture",
+          "MySQL database design and querying"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 24273,
+      "inputTokens": 336,
+      "outputTokens": 396
+    },
+    {
+      "caseId": "ambiguous-2-4-years",
+      "strategy": "few-shot",
+      "run": 2,
+      "schemaValid": true,
+      "analysis": {
+        "summary": "Software engineer focused on developing services using Java and Spring Boot.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Java backend development",
+          "Spring Boot implementation",
+          "MySQL optimization"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "claims": {
+        "ungroundedSkills": [],
+        "forbiddenSkills": [],
+        "unsupportedNumbers": [],
+        "guessedSeniority": false,
+        "total": 0,
+        "overAbstained": false
+      },
+      "durationMs": 3167,
+      "inputTokens": 674,
+      "outputTokens": 46
+    }
+  ]
+}

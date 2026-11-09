@@ -13,8 +13,11 @@ export interface JobAnalysisExample {
 }
 
 /**
- * Examples cover all three seniority levels on purpose: a set that only
- * shows junior and mid roles would push the model away from "senior".
+ * Examples used by prompt version 1.0.0. Do not edit: a released version
+ * must keep producing the same prompt (see prompt-registry.ts).
+ *
+ * They cover all three seniority levels on purpose: a set that only shows
+ * junior and mid roles would push the model away from "senior".
  * One example includes company context that must NOT leak into the skills.
  */
 export const jobAnalysisExamples: readonly JobAnalysisExample[] = [
@@ -56,4 +59,26 @@ export const jobAnalysisExamples: readonly JobAnalysisExample[] = [
       ],
     },
   },
+];
+
+/**
+ * An example of a posting that does not say what level the role is: the
+ * right answer is "unknown" and an empty skill list, not a guess and not
+ * invented skills.
+ */
+export const unknownSeniorityExample: JobAnalysisExample = {
+  jobDescription:
+    "We are looking for a developer to join our team and help build our web platform. Friendly team, flexible hours.",
+  output: {
+    summary: "Developer role on a web platform. The posting gives few details.",
+    requiredSkills: [],
+    seniority: "unknown",
+    interviewTopics: ["General software development experience"],
+  },
+};
+
+/** Examples used by prompt version 1.1.0: the 1.0.0 set plus an "unknown" case. */
+export const jobAnalysisExamplesWithUnknown: readonly JobAnalysisExample[] = [
+  ...jobAnalysisExamples,
+  unknownSeniorityExample,
 ];

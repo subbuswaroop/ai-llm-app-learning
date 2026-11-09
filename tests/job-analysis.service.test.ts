@@ -61,6 +61,19 @@ describe("JobAnalysisService", () => {
     expect(analyzeJobDescription).toHaveBeenCalledWith("A job", {});
   });
 
+  it("accepts unknown seniority as a valid answer and returns it unchanged", async () => {
+    const { provider } = providerReturning({
+      summary: "Developer role. The posting gives few details.",
+      requiredSkills: [],
+      seniority: "unknown",
+      interviewTopics: [],
+    });
+
+    const result = await new JobAnalysisService(provider).analyze("A vague job");
+
+    expect(result.data.seniority).toBe("unknown");
+  });
+
   it("rejects a response with an invalid seniority value", async () => {
     const { provider } = providerReturning({
       ...MOCK_JOB_ANALYSIS,

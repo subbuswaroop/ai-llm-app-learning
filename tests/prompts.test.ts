@@ -1,10 +1,14 @@
 import { describe, expect, it } from "vitest";
 
-import { jobAnalysisExamples } from "../src/prompts/job-analysis.examples";
+import {
+  jobAnalysisExamples,
+  jobAnalysisExamplesWithUnknown,
+} from "../src/prompts/job-analysis.examples";
 import {
   createJobAnalysisPrompt,
   formatUserMessage,
   JOB_ANALYSIS_SYSTEM_PROMPT_V1,
+  JOB_ANALYSIS_SYSTEM_PROMPT_V1_1,
   neutralizeDelimiters,
 } from "../src/prompts/job-analysis.prompt";
 import {
@@ -29,7 +33,7 @@ describe("system prompt", () => {
   });
 
   it("is the first message, and appears exactly once", () => {
-    const messages = getJobAnalysisPrompt().buildMessages({ jobDescription: "A job" });
+    const messages = getJobAnalysisPrompt("1.0.0").buildMessages({ jobDescription: "A job" });
 
     expect(messages[0]).toEqual({
       role: "system",
@@ -41,7 +45,7 @@ describe("system prompt", () => {
 
 describe("dynamic job description", () => {
   it("puts the job description in the final user message, inside tags", () => {
-    const messages = getJobAnalysisPrompt().buildMessages({
+    const messages = getJobAnalysisPrompt("1.0.0").buildMessages({
       jobDescription: "  Senior Go engineer, 8 years.  ",
     });
 
@@ -53,7 +57,7 @@ describe("dynamic job description", () => {
   });
 
   it("builds a different final message for a different job description", () => {
-    const prompt = getJobAnalysisPrompt();
+    const prompt = getJobAnalysisPrompt("1.0.0");
 
     const a = prompt.buildMessages({ jobDescription: "Role A" }).at(-1)!.content;
     const b = prompt.buildMessages({ jobDescription: "Role B" }).at(-1)!.content;
@@ -64,7 +68,7 @@ describe("dynamic job description", () => {
   });
 
   it("is deterministic: the same input always gives the same messages", () => {
-    const prompt = getJobAnalysisPrompt();
+    const prompt = getJobAnalysisPrompt("1.0.0");
     const input = { jobDescription: "Same job", companyContext: "Same company" };
 
     expect(prompt.buildMessages(input)).toEqual(prompt.buildMessages(input));
@@ -73,7 +77,7 @@ describe("dynamic job description", () => {
 
 describe("optional company context", () => {
   it("includes company context in its own tags, before the job description", () => {
-    const content = getJobAnalysisPrompt()
+    const content = getJobAnalysisPrompt("1.0.0")
       .buildMessages({ jobDescription: "A job", companyContext: "A fintech startup." })
       .at(-1)!.content;
 
@@ -86,7 +90,7 @@ describe("optional company context", () => {
   it.each([undefined, "", "   ", "\n\t "])(
     "leaves the company_context section out when it is %j",
     (companyContext) => {
-      const content = getJobAnalysisPrompt()
+      const content = getJobAnalysisPrompt("1.0.0")
         .buildMessages({ jobDescription: "A job", companyContext })
         .at(-1)!.content;
 
@@ -96,7 +100,7 @@ describe("optional company context", () => {
 });
 
 describe("few-shot examples", () => {
-  const prompt = getJobAnalysisPrompt();
+  const prompt = getJobAnalysisPrompt("1.0.0");
   const messages = prompt.buildMessages({ jobDescription: "The real job" });
 
   it("lays messages out as system, (user, assistant) per example, then the real user input", () => {
@@ -164,7 +168,7 @@ describe("few-shot examples", () => {
 });
 
 describe("prompt strategy", () => {
-  const prompt = getJobAnalysisPrompt();
+  const prompt = getJobAnalysisPrompt("1.0.0");
   const input = { jobDescription: "The real job", companyContext: "Some company" };
 
   it("zero-shot has no examples: just the system prompt and the real input", () => {
@@ -263,6 +267,70 @@ describe("prompt injection hardening", () => {
     const example = prompt.buildMessages({ jobDescription: "real" })[1]!.content;
 
     expect(count(example, "</job_description>")).toBe(1);
+  });
+});
+
+describe("prompt version 1.0.0 stays frozen", () => {
+  it("does not mention unknown seniority, in the prompt or in the examples", () => {
+    expect(JOB_ANALYSIS_SYSTEM_PROMPT_V1).not.toContain("unknown");
+    expect(jobAnalysisExamples.every((e) => e.output.seniority !== "unknown")).toBe(true);
+  });
+});
+
+describe("prompt version 1.1.0 (unknown seniority)", () => {
+  const prompt = getJobAnalysisPrompt("1.1.0");
+
+  it("is the current version", () => {
+    expect(CURRENT_JOB_ANALYSIS_PROMPT_VERSION).toBe("1.1.0");
+  });
+
+  it("lets the model answer unknown and tells it not to guess", () => {
+    expect(JOB_ANALYSIS_SYSTEM_PROMPT_V1_1).toContain('"unknown"');
+    expect(JOB_ANALYSIS_SYSTEM_PROMPT_V1_1).toMatch(/Do not guess/);
+  });
+
+  it("differs from 1.0.0 in exactly one line, so the rest of the prompt is unchanged", () => {
+    // Also guards against the string replacement silently matching nothing.
+    const before = JOB_ANALYSIS_SYSTEM_PROMPT_V1.split("\n");
+    const after = JOB_ANALYSIS_SYSTEM_PROMPT_V1_1.split("\n");
+
+    expect(after).toHaveLength(before.length);
+    expect(after.filter((line, i) => line !== before[i])).toHaveLength(1);
+  });
+
+  it("uses the system prompt for 1.1.0", () => {
+    expect(prompt.buildMessages({ jobDescription: "A job" })[0]!.content).toBe(
+      JOB_ANALYSIS_SYSTEM_PROMPT_V1_1,
+    );
+  });
+
+  it("includes an example where the right answer is unknown with no skills", () => {
+    const unknown = jobAnalysisExamplesWithUnknown.filter((e) => e.output.seniority === "unknown");
+
+    expect(unknown).toHaveLength(1);
+    expect(unknown[0]!.output.requiredSkills).toEqual([]);
+  });
+
+  it("keeps every 1.0.0 example and only adds to them", () => {
+    expect(jobAnalysisExamplesWithUnknown.slice(0, jobAnalysisExamples.length)).toEqual(
+      jobAnalysisExamples,
+    );
+  });
+
+  it("only uses examples that are valid against the schema", () => {
+    for (const example of jobAnalysisExamplesWithUnknown) {
+      expect(JobAnalysisSchema.safeParse(example.output).success).toBe(true);
+    }
+  });
+
+  it("sends the extra example for few-shot and none for zero-shot", () => {
+    const few = prompt.buildMessages({ jobDescription: "A job" }, "few-shot");
+    const zero = prompt.buildMessages({ jobDescription: "A job" }, "zero-shot");
+
+    expect(few.filter((m) => m.role === "assistant")).toHaveLength(
+      jobAnalysisExamplesWithUnknown.length,
+    );
+    expect(zero.map((m) => m.role)).toEqual(["system", "user"]);
   });
 });
 

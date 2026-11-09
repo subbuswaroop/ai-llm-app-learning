@@ -1,8 +1,16 @@
 import { z } from "zod";
 
+/**
+ * "unknown" means the job description does not contain enough evidence to
+ * pick a level. It exists so the model is never forced to guess: a made-up
+ * "mid" for a posting that says nothing about experience looks exactly like
+ * a real one downstream.
+ */
 export const SeniorityLevelSchema = z
-  .enum(["junior", "mid", "senior"])
-  .describe("Seniority level the role is aimed at");
+  .enum(["junior", "mid", "senior", "unknown"])
+  .describe(
+    'Seniority level the role is aimed at. Use "unknown" when the job description gives no clear evidence of the level. Do not guess.'
+  );
 
 export const JobAnalysisSchema = z.object({
   summary: z
@@ -25,5 +33,5 @@ export const JobAnalysisSchema = z.object({
  */
 export const JobAnalysisJsonSchema = z.toJSONSchema(JobAnalysisSchema);
 
-export type SeniorityLevel =z.infer<typeof SeniorityLevelSchema>;
+export type SeniorityLevel = z.infer<typeof SeniorityLevelSchema>;
 export type JobAnalysis = z.infer<typeof JobAnalysisSchema>;

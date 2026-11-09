@@ -52,6 +52,18 @@ export const JOB_ANALYSIS_SYSTEM_PROMPT_V1 = [
 ].join("\n");
 
 /**
+ * System prompt for version 1.1.0.
+ *
+ * Same as 1.0.0 except for the seniority rule: the model may answer
+ * "unknown" when the job description gives no clear evidence of the level,
+ * instead of being forced to pick junior, mid or senior.
+ */
+export const JOB_ANALYSIS_SYSTEM_PROMPT_V1_1 = JOB_ANALYSIS_SYSTEM_PROMPT_V1.replace(
+  '- seniority must be exactly one of "junior", "mid" or "senior". Base it on explicit evidence in the job description, such as the job title, years of experience and scope of responsibility.',
+  '- seniority must be exactly one of "junior", "mid", "senior" or "unknown". Base it on explicit evidence in the job description, such as the job title, years of experience and scope of responsibility. If the job description gives no clear evidence of the level, use "unknown". Do not guess.'
+);
+
+/**
  * Stops user-supplied text from closing or reopening our delimiter tags.
  *
  * Without this, a job description containing `</job_description>` followed by

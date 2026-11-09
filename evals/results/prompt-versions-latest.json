@@ -1,0 +1,310 @@
+{
+  "finishedAt": "2026-11-09T07:43:59.405Z",
+  "runs": 3,
+  "cases": [
+    "missing-seniority",
+    "very-sparse"
+  ],
+  "rows": [
+    {
+      "version": "1.0.0",
+      "strategy": "zero-shot",
+      "caseId": "missing-seniority",
+      "run": 0,
+      "status": "ok",
+      "seniority": "mid",
+      "guessed": true,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "zero-shot",
+      "caseId": "missing-seniority",
+      "run": 0,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "few-shot",
+      "caseId": "missing-seniority",
+      "run": 0,
+      "status": "ok",
+      "seniority": "mid",
+      "guessed": true,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "few-shot",
+      "caseId": "missing-seniority",
+      "run": 0,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "zero-shot",
+      "caseId": "very-sparse",
+      "run": 0,
+      "status": "ok",
+      "seniority": "junior",
+      "guessed": true,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "zero-shot",
+      "caseId": "very-sparse",
+      "run": 0,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "few-shot",
+      "caseId": "very-sparse",
+      "run": 0,
+      "status": "ok",
+      "seniority": "junior",
+      "guessed": true,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "few-shot",
+      "caseId": "very-sparse",
+      "run": 0,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "zero-shot",
+      "caseId": "missing-seniority",
+      "run": 1,
+      "status": "ok",
+      "seniority": "mid",
+      "guessed": true,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "zero-shot",
+      "caseId": "missing-seniority",
+      "run": 1,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "few-shot",
+      "caseId": "missing-seniority",
+      "run": 1,
+      "status": "ok",
+      "seniority": "mid",
+      "guessed": true,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "few-shot",
+      "caseId": "missing-seniority",
+      "run": 1,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "zero-shot",
+      "caseId": "very-sparse",
+      "run": 1,
+      "status": "ok",
+      "seniority": "mid",
+      "guessed": true,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "zero-shot",
+      "caseId": "very-sparse",
+      "run": 1,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "few-shot",
+      "caseId": "very-sparse",
+      "run": 1,
+      "status": "ok",
+      "seniority": "junior",
+      "guessed": true,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "few-shot",
+      "caseId": "very-sparse",
+      "run": 1,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "zero-shot",
+      "caseId": "missing-seniority",
+      "run": 2,
+      "status": "ok",
+      "seniority": "mid",
+      "guessed": true,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "zero-shot",
+      "caseId": "missing-seniority",
+      "run": 2,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "few-shot",
+      "caseId": "missing-seniority",
+      "run": 2,
+      "status": "ok",
+      "seniority": "mid",
+      "guessed": true,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "few-shot",
+      "caseId": "missing-seniority",
+      "run": 2,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "zero-shot",
+      "caseId": "very-sparse",
+      "run": 2,
+      "status": "ok",
+      "seniority": "mid",
+      "guessed": true,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "zero-shot",
+      "caseId": "very-sparse",
+      "run": 2,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "strategy": "few-shot",
+      "caseId": "very-sparse",
+      "run": 2,
+      "status": "ok",
+      "seniority": "junior",
+      "guessed": true,
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "strategy": "few-shot",
+      "caseId": "very-sparse",
+      "run": 2,
+      "status": "ok",
+      "seniority": "unknown",
+      "guessed": false,
+      "skills": [
+        "Python"
+      ]
+    }
+  ]
+}
