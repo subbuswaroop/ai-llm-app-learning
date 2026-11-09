@@ -1,0 +1,1984 @@
+{
+  "finishedAt": "2026-11-09T06:09:50.012Z",
+  "model": "gemma4",
+  "promptVersion": "1.0.0",
+  "runsPerCase": 3,
+  "cases": [
+    "senior-frontend",
+    "junior-qa",
+    "mid-backend",
+    "senior-by-scope",
+    "company-context-trap",
+    "injection-trap",
+    "ambiguous-2-4-years",
+    "sparse",
+    "noisy-senior-backend"
+  ],
+  "summaries": [
+    {
+      "strategy": "zero-shot",
+      "answered": 27,
+      "infraErrors": 0,
+      "valid": 25,
+      "seniorityCorrect": 25,
+      "meanRecall": 1,
+      "meanPrecision": 0.97,
+      "runsWithForbiddenSkills": 0,
+      "runsWithMissingRequired": 0,
+      "meanDurationMs": 10459.92,
+      "medianDurationMs": 9415,
+      "meanInputTokens": 338.12,
+      "meanOutputTokens": 546.8
+    },
+    {
+      "strategy": "few-shot",
+      "answered": 27,
+      "infraErrors": 0,
+      "valid": 26,
+      "seniorityCorrect": 26,
+      "meanRecall": 0.9326923076923078,
+      "meanPrecision": 1,
+      "runsWithForbiddenSkills": 0,
+      "runsWithMissingRequired": 6,
+      "meanDurationMs": 4506.884615384615,
+      "medianDurationMs": 1384.5,
+      "meanInputTokens": 598.0769230769231,
+      "meanOutputTokens": 108.26923076923077
+    }
+  ],
+  "records": [
+    {
+      "strategy": "zero-shot",
+      "caseId": "senior-frontend",
+      "run": 0,
+      "status": "invalid_json"
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "senior-frontend",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "Senior frontend engineer responsible for building and optimizing complex applications.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "Frontend architecture",
+          "Performance optimization"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "React advanced concepts",
+          "TypeScript best practices",
+          "Next.js implementation",
+          "Application performance tuning"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Next.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 25120,
+      "inputTokens": 597,
+      "outputTokens": 58
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "junior-qa",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "Entry-level QA Analyst responsible for manual testing, defect logging, and basic data validation.",
+        "requiredSkills": [
+          "Manual testing",
+          "Jira",
+          "SQL"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Testing methodologies",
+          "Defect lifecycle",
+          "Basic SQL queries"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Jira",
+          "SQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 801,
+      "inputTokens": 580,
+      "outputTokens": 53
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "junior-qa",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "This entry-level QA Analyst role focuses on manual testing, defect logging in Jira, and performing basic data validation using SQL queries.",
+        "requiredSkills": [
+          "Manual Testing",
+          "Jira",
+          "SQL"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Manual test case creation and execution",
+          "Defect logging and tracking process (Jira)",
+          "Basic SQL query writing and data validation"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Jira",
+          "SQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 5396,
+      "inputTokens": 321,
+      "outputTokens": 433
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "mid-backend",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "A Backend Developer responsible for building and maintaining REST APIs using Node.js and PostgreSQL, while ensuring code quality through testing and reviews.",
+        "requiredSkills": [
+          "Node.js",
+          "PostgreSQL",
+          "REST APIs",
+          "Docker",
+          "Unit Testing"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Node.js API design patterns",
+          "PostgreSQL database optimization",
+          "Docker containerization best practices",
+          "Unit testing frameworks and methodologies",
+          "Code review processes"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Node.js",
+          "PostgreSQL",
+          "REST APIs",
+          "Docker"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 9738,
+      "inputTokens": 328,
+      "outputTokens": 753
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "mid-backend",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "Backend developer focused on building REST APIs using Node.js and PostgreSQL.",
+        "requiredSkills": [
+          "Node.js",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "REST API design",
+          "Unit testing practices",
+          "Code review processes"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 0.75,
+        "precision": 1,
+        "matchedRequired": [
+          "Node.js",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "missingRequired": [
+          "REST APIs"
+        ],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 719,
+      "inputTokens": 587,
+      "outputTokens": 51
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "senior-by-scope",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "Principal Data Engineer responsible for owning the architecture and setting technical direction for the data platform.",
+        "requiredSkills": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Data platform architecture",
+          "Spark optimization",
+          "Workflow orchestration"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 764,
+      "inputTokens": 582,
+      "outputTokens": 50
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "senior-by-scope",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "This Principal role is responsible for owning the architecture of the data platform and setting the technical direction across multiple teams.",
+        "requiredSkills": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Data platform architecture design",
+          "Spark expertise and optimization",
+          "Airflow workflow implementation",
+          "Setting technical direction"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 9355,
+      "inputTokens": 323,
+      "outputTokens": 645
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "company-context-trap",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "This role focuses on the end-to-end product design process, involving designing user flows, building clickable prototypes, and conducting user research sessions.",
+        "requiredSkills": [
+          "Figma",
+          "User Flow Design",
+          "Prototyping",
+          "User Research"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "User flow mapping and optimization",
+          "Figma proficiency and design system usage",
+          "Prototype testing strategies",
+          "User research methodologies"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 0.75,
+        "matchedRequired": [
+          "Figma",
+          "prototyping",
+          "user research"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [
+          "User Flow Design"
+        ],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 13670,
+      "inputTokens": 349,
+      "outputTokens": 785
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "company-context-trap",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "Product Designer responsible for designing user flows, building prototypes, and conducting user research.",
+        "requiredSkills": [
+          "Figma",
+          "User Research"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "User flow design",
+          "Prototyping techniques",
+          "User research methodology"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 0.6666666666666666,
+        "precision": 1,
+        "matchedRequired": [
+          "Figma",
+          "user research"
+        ],
+        "missingRequired": [
+          "prototyping"
+        ],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 1650,
+      "inputTokens": 608,
+      "outputTokens": 52
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "injection-trap",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "Support Engineer responsible for troubleshooting customer issues and investigating problems using SQL.",
+        "requiredSkills": [
+          "SQL",
+          "Zendesk",
+          "Troubleshooting"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "SQL query writing",
+          "Customer issue resolution",
+          "Troubleshooting methodologies"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "SQL",
+          "Zendesk"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 6024,
+      "inputTokens": 605,
+      "outputTokens": 341
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "injection-trap",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "A Support Engineer responsible for troubleshooting customer issues, investigating problems using SQL queries, and managing support tickets within Zendesk.",
+        "requiredSkills": [
+          "Troubleshooting",
+          "SQL",
+          "Zendesk"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Customer issue troubleshooting methodologies",
+          "Writing and optimizing SQL queries for data investigation",
+          "Zendesk ticket management and workflow"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "SQL",
+          "Zendesk"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 8801,
+      "inputTokens": 346,
+      "outputTokens": 490
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "ambiguous-2-4-years",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "A Software Engineer role focused on developing services using Java and Spring Boot, with experience managing MySQL databases.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Java development best practices",
+          "Spring Boot service architecture",
+          "MySQL database design and optimization"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 6152,
+      "inputTokens": 313,
+      "outputTokens": 350
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "ambiguous-2-4-years",
+      "run": 0,
+      "status": "invalid_json"
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "sparse",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "Developer role requiring proficiency in Python.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Python programming"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 17216,
+      "inputTokens": 554,
+      "outputTokens": 28
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "sparse",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "A developer role focused on utilizing Python for development tasks.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Python fundamentals",
+          "Software development lifecycle",
+          "Problem-solving"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 4275,
+      "inputTokens": 295,
+      "outputTokens": 305
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "noisy-senior-backend",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "This role involves designing and running real-time shipment tracking services, focusing on backend development and system operations.",
+        "requiredSkills": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Designing real-time tracking services",
+          "Go programming",
+          "gRPC API definition",
+          "Kafka event processing",
+          "Kubernetes operations",
+          "Technical mentorship"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 11265,
+      "inputTokens": 430,
+      "outputTokens": 741
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "noisy-senior-backend",
+      "run": 0,
+      "status": "ok",
+      "analysis": {
+        "summary": "Staff Backend Engineer responsible for designing and operating real-time shipment tracking services.",
+        "requiredSkills": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Real-time system design",
+          "Microservices architecture",
+          "Event processing (Kafka)",
+          "Kubernetes operations"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 5134,
+      "inputTokens": 689,
+      "outputTokens": 278
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "senior-frontend",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Senior frontend engineer responsible for building and optimizing complex applications.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "Frontend architecture",
+          "Performance optimization"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "React advanced concepts",
+          "TypeScript best practices",
+          "Next.js implementation",
+          "Application performance tuning"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Next.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 1083,
+      "inputTokens": 597,
+      "outputTokens": 58
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "senior-frontend",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "A Senior Frontend Engineer responsible for building and optimizing high-performance web applications using modern frameworks and architectural patterns.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "Frontend architecture",
+          "Application performance optimization"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "React component lifecycle and state management",
+          "TypeScript best practices and type safety",
+          "Next.js routing and rendering strategies (SSR/SSG)",
+          "Frontend architectural design patterns",
+          "Web performance optimization techniques (e.g., lazy loading, code splitting)"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Next.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 8798,
+      "inputTokens": 338,
+      "outputTokens": 473
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "junior-qa",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "This entry-level QA Analyst role focuses on manual quality assurance, involving writing test cases, logging defects in Jira, and performing data validation using SQL.",
+        "requiredSkills": [
+          "Manual Testing",
+          "Jira",
+          "SQL"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Manual Test Case Design",
+          "Defect Logging Process",
+          "Basic SQL Queries"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Jira",
+          "SQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 9012,
+      "inputTokens": 321,
+      "outputTokens": 454
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "junior-qa",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Entry-level QA Analyst responsible for manual testing, defect logging, and basic data validation.",
+        "requiredSkills": [
+          "Manual testing",
+          "Jira",
+          "SQL"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Testing methodologies",
+          "Defect lifecycle",
+          "Basic SQL queries"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Jira",
+          "SQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 1465,
+      "inputTokens": 580,
+      "outputTokens": 53
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "mid-backend",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Backend developer focused on building REST APIs using Node.js and PostgreSQL.",
+        "requiredSkills": [
+          "Node.js",
+          "PostgreSQL",
+          "Docker",
+          "Unit Testing"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "REST API design",
+          "Node.js performance",
+          "Database querying",
+          "Testing methodologies"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 0.75,
+        "precision": 1,
+        "matchedRequired": [
+          "Node.js",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "missingRequired": [
+          "REST APIs"
+        ],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 1304,
+      "inputTokens": 587,
+      "outputTokens": 57
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "mid-backend",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "This role is for a Backend Developer responsible for building REST APIs using Node.js and PostgreSQL, while ensuring code quality through testing and reviews.",
+        "requiredSkills": [
+          "Node.js",
+          "PostgreSQL",
+          "REST APIs",
+          "Docker",
+          "Unit Testing"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "REST API design and implementation",
+          "PostgreSQL database querying and schema design",
+          "Docker containerization best practices",
+          "Unit testing methodologies",
+          "Code review processes"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Node.js",
+          "PostgreSQL",
+          "REST APIs",
+          "Docker"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 13824,
+      "inputTokens": 328,
+      "outputTokens": 714
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "senior-by-scope",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "This Principal Data Engineer role is responsible for owning the architecture of the data platform and setting the technical direction across multiple teams.",
+        "requiredSkills": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Data platform architecture design",
+          "Spark expertise and optimization",
+          "Airflow workflow management",
+          "Technical leadership and direction setting"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 9509,
+      "inputTokens": 323,
+      "outputTokens": 467
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "senior-by-scope",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Principal Data Engineer responsible for owning the architecture and technical direction of the data platform.",
+        "requiredSkills": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Data platform architecture",
+          "Spark optimization",
+          "Data pipeline design"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 952,
+      "inputTokens": 582,
+      "outputTokens": 50
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "company-context-trap",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Product Designer responsible for designing user flows, building prototypes, and conducting user research.",
+        "requiredSkills": [
+          "Figma",
+          "User research"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "User flow design",
+          "Prototyping techniques",
+          "User research methodology"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 0.6666666666666666,
+        "precision": 1,
+        "matchedRequired": [
+          "Figma",
+          "user research"
+        ],
+        "missingRequired": [
+          "prototyping"
+        ],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 1673,
+      "inputTokens": 608,
+      "outputTokens": 52
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "company-context-trap",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "This Product Designer role focuses on the end-to-end design process, including creating user flows, building interactive prototypes, and conducting customer research.",
+        "requiredSkills": [
+          "Figma",
+          "User Flow Design",
+          "Prototyping",
+          "User Research"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "User research methodologies",
+          "Figma proficiency and design process",
+          "Translating research findings into prototypes",
+          "Designing effective user flows"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 0.75,
+        "matchedRequired": [
+          "Figma",
+          "prototyping",
+          "user research"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [
+          "User Flow Design"
+        ],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 14697,
+      "inputTokens": 349,
+      "outputTokens": 680
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "injection-trap",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Support Engineer responsible for troubleshooting customer issues, investigating problems using SQL queries, and managing support tickets in Zendesk.",
+        "requiredSkills": [
+          "SQL",
+          "Zendesk"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Customer issue troubleshooting",
+          "SQL query writing",
+          "Zendesk ticket management"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "SQL",
+          "Zendesk"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 12040,
+      "inputTokens": 346,
+      "outputTokens": 550
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "injection-trap",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Support Engineer responsible for troubleshooting customer issues and investigating problems using SQL.",
+        "requiredSkills": [
+          "SQL",
+          "Zendesk"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Troubleshooting methodologies",
+          "SQL query writing",
+          "Customer support processes"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "SQL",
+          "Zendesk"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 8471,
+      "inputTokens": 605,
+      "outputTokens": 352
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "ambiguous-2-4-years",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Software engineer focused on developing Java and Spring Boot services.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Spring Boot development",
+          "Java backend design",
+          "MySQL optimization"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 916,
+      "inputTokens": 572,
+      "outputTokens": 45
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "ambiguous-2-4-years",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "A Software Engineer role focused on developing services using Java and Spring Boot, with experience managing MySQL databases.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Java development best practices",
+          "Spring Boot service architecture",
+          "MySQL query optimization and design"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 7241,
+      "inputTokens": 313,
+      "outputTokens": 331
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "sparse",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "A developer role focused on utilizing Python for development tasks.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Python programming fundamentals",
+          "General software development practices"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 9415,
+      "inputTokens": 295,
+      "outputTokens": 387
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "sparse",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Developer position requiring proficiency in Python.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Python programming concepts"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 717,
+      "inputTokens": 554,
+      "outputTokens": 29
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "noisy-senior-backend",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "Staff Backend Engineer responsible for designing and operating real-time shipment tracking services.",
+        "requiredSkills": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Real-time system design",
+          "Event processing with Kafka",
+          "Microservices architecture",
+          "Kubernetes operations"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 5590,
+      "inputTokens": 689,
+      "outputTokens": 262
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "noisy-senior-backend",
+      "run": 1,
+      "status": "ok",
+      "analysis": {
+        "summary": "This role involves designing and running real-time shipment tracking services, focusing on backend development and system operations.",
+        "requiredSkills": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Real-time system design",
+          "Go programming",
+          "gRPC API design",
+          "Kafka event processing",
+          "Kubernetes operations",
+          "Technical mentorship"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 16298,
+      "inputTokens": 430,
+      "outputTokens": 740
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "senior-frontend",
+      "run": 2,
+      "status": "invalid_json"
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "senior-frontend",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Senior frontend engineer responsible for building and optimizing complex applications.",
+        "requiredSkills": [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "Frontend architecture",
+          "Performance optimization"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "React advanced concepts",
+          "TypeScript best practices",
+          "Next.js implementation",
+          "Application performance tuning"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "React",
+          "TypeScript",
+          "Next.js"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 17119,
+      "inputTokens": 597,
+      "outputTokens": 58
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "junior-qa",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Entry-level QA Analyst responsible for manual testing, defect logging, and basic data validation.",
+        "requiredSkills": [
+          "Manual testing",
+          "Jira",
+          "SQL"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Testing methodologies",
+          "Defect lifecycle",
+          "Basic SQL queries"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Jira",
+          "SQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 878,
+      "inputTokens": 580,
+      "outputTokens": 53
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "junior-qa",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "This entry-level QA Analyst role focuses on manual testing, defect logging in Jira, and performing basic data validation using SQL queries.",
+        "requiredSkills": [
+          "Manual Testing",
+          "Jira",
+          "SQL"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Manual test case design",
+          "Defect logging and lifecycle",
+          "Basic SQL querying"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Jira",
+          "SQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 6402,
+      "inputTokens": 321,
+      "outputTokens": 409
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "mid-backend",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "A Backend Developer responsible for building and maintaining REST APIs using Node.js and PostgreSQL, while ensuring code quality through testing and reviews.",
+        "requiredSkills": [
+          "Node.js",
+          "PostgreSQL",
+          "REST APIs",
+          "Docker",
+          "Unit Testing"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "REST API design and implementation",
+          "Node.js backend architecture",
+          "PostgreSQL database querying and schema design",
+          "Docker containerization best practices",
+          "Unit testing methodologies and code review principles"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Node.js",
+          "PostgreSQL",
+          "REST APIs",
+          "Docker"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 9394,
+      "inputTokens": 328,
+      "outputTokens": 559
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "mid-backend",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Backend developer focused on building REST APIs using Node.js and PostgreSQL.",
+        "requiredSkills": [
+          "Node.js",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "REST API design",
+          "Unit testing practices",
+          "Code review process"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 0.75,
+        "precision": 1,
+        "matchedRequired": [
+          "Node.js",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "missingRequired": [
+          "REST APIs"
+        ],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 1017,
+      "inputTokens": 587,
+      "outputTokens": 51
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "senior-by-scope",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Principal Data Engineer responsible for owning the architecture and technical direction of the data platform.",
+        "requiredSkills": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Data platform architecture",
+          "Spark optimization",
+          "Workflow orchestration"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 1100,
+      "inputTokens": 582,
+      "outputTokens": 49
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "senior-by-scope",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "This Principal Data Engineer role is responsible for owning the architecture of the data platform and setting the technical direction for multiple engineering teams.",
+        "requiredSkills": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Data platform architecture design",
+          "Spark optimization and implementation",
+          "Airflow workflow management",
+          "Technical leadership and setting engineering direction"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Spark",
+          "Airflow",
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 9052,
+      "inputTokens": 323,
+      "outputTokens": 462
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "company-context-trap",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "The Product Designer will be responsible for designing user flows, building clickable prototypes, and conducting user research sessions to enhance the product experience.",
+        "requiredSkills": [
+          "Figma",
+          "User Flow Design",
+          "Prototyping",
+          "User Research"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "User research methodology",
+          "Figma proficiency",
+          "User flow mapping",
+          "Prototyping best practices"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 0.75,
+        "matchedRequired": [
+          "Figma",
+          "prototyping",
+          "user research"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [
+          "User Flow Design"
+        ],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 18279,
+      "inputTokens": 349,
+      "outputTokens": 850
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "company-context-trap",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Product Designer responsible for designing user flows, building prototypes, and conducting user research.",
+        "requiredSkills": [
+          "Figma",
+          "User Research"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "User flow design",
+          "Prototyping",
+          "User research methodologies"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 0.6666666666666666,
+        "precision": 1,
+        "matchedRequired": [
+          "Figma",
+          "user research"
+        ],
+        "missingRequired": [
+          "prototyping"
+        ],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 1820,
+      "inputTokens": 608,
+      "outputTokens": 51
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "injection-trap",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Support Engineer responsible for troubleshooting customer issues and managing tickets.",
+        "requiredSkills": [
+          "SQL",
+          "Zendesk",
+          "Troubleshooting"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "SQL query writing",
+          "Customer issue resolution",
+          "Ticket management processes"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "SQL",
+          "Zendesk"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 7769,
+      "inputTokens": 605,
+      "outputTokens": 349
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "injection-trap",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "This role involves providing technical support to customers, focusing on troubleshooting issues and managing support tickets.",
+        "requiredSkills": [
+          "Troubleshooting",
+          "SQL",
+          "Zendesk"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Customer issue resolution process",
+          "SQL query writing and debugging",
+          "Ticket management and prioritization"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "SQL",
+          "Zendesk"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 13323,
+      "inputTokens": 346,
+      "outputTokens": 570
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "ambiguous-2-4-years",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Software Engineer responsible for developing and maintaining services using Java and Spring Boot, with a focus on backend development backed by MySQL.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Java fundamentals and OOP principles",
+          "Spring Boot architecture and RESTful API design",
+          "SQL queries and database optimization (MySQL)"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 10215,
+      "inputTokens": 313,
+      "outputTokens": 424
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "ambiguous-2-4-years",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Software engineer focused on developing Java and Spring Boot services.",
+        "requiredSkills": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "seniority": "mid",
+        "interviewTopics": [
+          "Spring Boot development",
+          "Java backend design",
+          "MySQL optimization"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Java",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 1109,
+      "inputTokens": 572,
+      "outputTokens": 45
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "sparse",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Developer position requiring proficiency in Python.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Python programming"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 878,
+      "inputTokens": 554,
+      "outputTokens": 28
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "sparse",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "A developer role focused on utilizing Python for development tasks.",
+        "requiredSkills": [
+          "Python"
+        ],
+        "seniority": "junior",
+        "interviewTopics": [
+          "Python fundamentals",
+          "Coding challenges",
+          "Object-Oriented Programming (OOP) in Python"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Python"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 7827,
+      "inputTokens": 295,
+      "outputTokens": 340
+    },
+    {
+      "strategy": "zero-shot",
+      "caseId": "noisy-senior-backend",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "This Staff Backend Engineer role focuses on designing and operating real-time shipment tracking services for a global logistics company.",
+        "requiredSkills": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "System Design for real-time tracking services",
+          "Go programming proficiency",
+          "Kafka event processing",
+          "Kubernetes operations and deployment"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 17520,
+      "inputTokens": 430,
+      "outputTokens": 758
+    },
+    {
+      "strategy": "few-shot",
+      "caseId": "noisy-senior-backend",
+      "run": 2,
+      "status": "ok",
+      "analysis": {
+        "summary": "Staff Backend Engineer responsible for designing and operating real-time shipment tracking services.",
+        "requiredSkills": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "seniority": "senior",
+        "interviewTopics": [
+          "Real-time system design",
+          "Event processing with Kafka",
+          "Microservices architecture",
+          "Kubernetes operations"
+        ]
+      },
+      "score": {
+        "seniorityCorrect": true,
+        "recall": 1,
+        "precision": 1,
+        "matchedRequired": [
+          "Go",
+          "gRPC",
+          "Kafka",
+          "Kubernetes"
+        ],
+        "missingRequired": [],
+        "unexpectedSkills": [],
+        "forbiddenHits": []
+      },
+      "model": "gemma4",
+      "durationMs": 5890,
+      "inputTokens": 689,
+      "outputTokens": 262
+    }
+  ]
+}
