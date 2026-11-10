@@ -28,7 +28,7 @@ import {
   LlmTimeoutError,
 } from "../src/llm/errors";
 import { OllamaProvider } from "../src/llm/ollama.provider";
-import { CURRENT_JOB_ANALYSIS_PROMPT_VERSION } from "../src/prompts/prompt-registry";
+import { CURRENT_PROMPT_BUNDLE_VERSION } from "../src/prompts/prompt-registry";
 import {
   JobAnalysisService,
   JobAnalysisValidationError,
@@ -93,7 +93,7 @@ afterAll(() => {
     JSON.stringify(
       {
         finishedAt: new Date().toISOString(),
-        promptVersion: CURRENT_JOB_ANALYSIS_PROMPT_VERSION,
+        promptVersion: CURRENT_PROMPT_BUNDLE_VERSION,
         runsPerCase: RUNS_PER_CASE,
         ollamaFailures,
         summaries: PROMPT_STRATEGIES.map((s) => summarizePromptEval(s, runs)),
@@ -105,11 +105,11 @@ afterAll(() => {
   );
   writeFileSync(
     resolve(outDir, "prompt-eval-latest.md"),
-    toMarkdown(CURRENT_JOB_ANALYSIS_PROMPT_VERSION, promptEvalCases, runs, PROMPT_STRATEGIES) + "\n"
+    toMarkdown(CURRENT_PROMPT_BUNDLE_VERSION, promptEvalCases, runs, PROMPT_STRATEGIES) + "\n"
   );
 });
 
-describe(`prompt evaluation, prompt version ${CURRENT_JOB_ANALYSIS_PROMPT_VERSION}`, () => {
+describe(`prompt evaluation, prompt version ${CURRENT_PROMPT_BUNDLE_VERSION}`, () => {
   for (let run = 0; run < RUNS_PER_CASE; run++) {
     for (const [caseIndex, evalCase] of promptEvalCases.entries()) {
       // Alternate which strategy goes first so neither always runs "warmer".

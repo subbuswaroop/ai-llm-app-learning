@@ -1,8 +1,13 @@
 /**
- * Does prompt version 1.1.0 stop the model guessing a seniority level when
- * the job description gives no evidence? Runs the same two no-evidence cases
- * with version 1.0.0 (told to pick junior, mid or senior) and 1.1.0 (allowed
- * to answer "unknown"), both against the current schema.
+ * Does the "unknown" seniority level stop the model guessing when the job
+ * description gives no evidence? Runs the same two no-evidence cases against
+ * three prompt bundles, each under its own output contract:
+ *
+ * - 1.0.0: original prompt, schema 1.0.0 (three levels). The model CANNOT say
+ *          unknown: the contract forces a guess.
+ * - 1.0.1: original prompt text, schema 2.0.0 (allows unknown). Tests whether
+ *          allowing it in the schema alone is enough.
+ * - 1.1.0: prompt that allows unknown, schema 2.0.0.
  *
  *   npm run eval:versions
  *
@@ -26,7 +31,7 @@ import { PROMPT_STRATEGIES } from "../src/types/prompt-strategy";
 import { evaluateAnalysis } from "./prompt-eval";
 import { promptEvalCases } from "./prompt-eval.cases";
 
-const VERSIONS = ["1.0.0", "1.1.0"];
+const VERSIONS = ["1.0.0", "1.0.1", "1.1.0"];
 const CASE_IDS = ["missing-seniority", "very-sparse"];
 const RUNS = 3;
 const MAX_ATTEMPTS = 3;

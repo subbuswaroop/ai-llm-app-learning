@@ -17,7 +17,7 @@ import {
   LlmTimeoutError,
 } from "../src/llm/errors";
 import { OllamaProvider } from "../src/llm/ollama.provider";
-import { CURRENT_JOB_ANALYSIS_PROMPT_VERSION } from "../src/prompts/prompt-registry";
+import { CURRENT_PROMPT_BUNDLE_VERSION } from "../src/prompts/prompt-registry";
 import {
   JobAnalysisService,
   JobAnalysisValidationError,
@@ -41,7 +41,10 @@ if (!Number.isInteger(runsPerCase) || runsPerCase < 1) {
   throw new RangeError("--runs must be a positive integer");
 }
 
-const service = new JobAnalysisService(new OllamaProvider({ timeoutMs: 180_000 }));
+// Pin a bundle with --prompt-version, e.g. 1.0.0 to reproduce the recorded run.
+const promptVersion = argValue("prompt-version") ?? CURRENT_PROMPT_BUNDLE_VERSION;
+
+const service = new JobAnalysisService(new OllamaProvider({ promptVersion, timeoutMs: 180_000 }));
 
 /** One model call, with retries for infrastructure failures only. */
 async function runOnce(
@@ -95,7 +98,7 @@ async function runOnce(
 const fmt = (n: number, digits = 2) => (Number.isNaN(n) ? "n/a" : n.toFixed(digits));
 
 async function main() {
-  console.log(`Prompt version ${CURRENT_JOB_ANALYSIS_PROMPT_VERSION}, ${evalCases.length} cases, ${runsPerCase} runs each\n`);
+  console.log(`Prompt bundle ${promptVersion},${evalCases.length} cases, ${runsPerCase} runs each\n`);
 
   console.log("Warming up the model (not recorded)...");
   const warmup = await runOnce(
@@ -175,7 +178,7 @@ async function main() {
       {
         finishedAt: new Date().toISOString(),
         model: records.find((r) => r.model)?.model ?? "unknown",
-        promptVersion: CURRENT_JOB_ANALYSIS_PROMPT_VERSION,
+        promptVersion,
         runsPerCase,
         cases: evalCases.map((c) => c.id),
         summaries,

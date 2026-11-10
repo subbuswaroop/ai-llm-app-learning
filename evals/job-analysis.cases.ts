@@ -117,7 +117,7 @@ services backed by MySQL.`,
     purpose: "Almost no information: tests whether the model invents details",
     jobDescription: "Looking for a developer who knows Python.",
     expected: {
-      acceptableSeniority: ["junior", "mid", "senior"],
+      acceptableSeniority: ["junior", "mid", "senior", "unknown"],
       requiredSkills: ["Python"],
     },
   },

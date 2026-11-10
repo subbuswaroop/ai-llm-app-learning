@@ -3,56 +3,66 @@ import {
   jobAnalysisExamplesWithUnknown,
 } from "./job-analysis.examples";
 import {
-  createJobAnalysisPrompt,
   JOB_ANALYSIS_SYSTEM_PROMPT_V1,
   JOB_ANALYSIS_SYSTEM_PROMPT_V1_1,
-  type JobAnalysisPrompt,
 } from "./job-analysis.prompt";
+import { createPromptBundle, type PromptBundle } from "./prompt-bundle";
 
 /**
- * Every released job-analysis prompt, by version.
+ * Every released prompt bundle, by version. A bundle is the prompt text, its
+ * examples AND the output schema version it was released with, so a result
+ * recorded against a version can be reproduced under the contract it was
+ * produced with.
  *
- * Old versions stay registered so a result recorded against "1.0.0" can be
- * reproduced, and so two versions can be compared on the same inputs. To
- * change the prompt, add a new entry and move CURRENT_JOB_ANALYSIS_PROMPT_VERSION;
- * do not edit a released one.
+ * Released bundles are never edited (a test pins each one's fingerprint). To
+ * change anything, add a new bundle and move CURRENT_PROMPT_BUNDLE_VERSION.
  *
- * - 1.0.0: seniority is junior, mid or senior only.
- * - 1.1.0: adds "unknown" for postings with no clear evidence of the level,
- *          and an example that shows it.
- *
- * Note that the JSON Schema sent to the model is shared by all versions, so
- * it is part of what a version's results depend on too.
+ * - 1.0.0: prompt without "unknown", output schema 1.0.0 (three levels).
+ * - 1.0.1: the same prompt text as 1.0.0 but with output schema 2.0.0, which
+ *          allows "unknown". Evaluated and NOT adopted: the model never used
+ *          "unknown", because the prompt still told it to pick one of three.
+ *          Kept so that comparison stays reproducible.
+ * - 1.1.0: prompt that allows "unknown" and an example showing it, with
+ *          output schema 2.0.0. Current.
  */
-const jobAnalysisPrompts: ReadonlyMap<string, JobAnalysisPrompt> = new Map(
+const bundles: ReadonlyMap<string, PromptBundle> = new Map(
   [
-    createJobAnalysisPrompt({
+    createPromptBundle({
       version: "1.0.0",
+      schemaVersion: "1.0.0",
       systemPrompt: JOB_ANALYSIS_SYSTEM_PROMPT_V1,
       examples: jobAnalysisExamples,
     }),
-    createJobAnalysisPrompt({
+    createPromptBundle({
+      version: "1.0.1",
+      schemaVersion: "2.0.0",
+      systemPrompt: JOB_ANALYSIS_SYSTEM_PROMPT_V1,
+      examples: jobAnalysisExamples,
+    }),
+    createPromptBundle({
       version: "1.1.0",
+      schemaVersion: "2.0.0",
       systemPrompt: JOB_ANALYSIS_SYSTEM_PROMPT_V1_1,
       examples: jobAnalysisExamplesWithUnknown,
     }),
-  ].map((prompt) => [prompt.version, prompt])
+  ].map((bundle) => [bundle.version, bundle])
 );
 
-export const CURRENT_JOB_ANALYSIS_PROMPT_VERSION = "1.1.0";
+export const CURRENT_PROMPT_BUNDLE_VERSION = "1.1.0";
 
-/** Looks up a prompt by version, defaulting to the current one. */
-export function getJobAnalysisPrompt(
-  version: string = CURRENT_JOB_ANALYSIS_PROMPT_VERSION
-): JobAnalysisPrompt {
-  const prompt = jobAnalysisPrompts.get(version);
+export function listPromptBundleVersions(): string[] {
+  return [...bundles.keys()];
+}
 
-  if (!prompt) {
-    const known = [...jobAnalysisPrompts.keys()].join(", ");
+/** Looks up a whole bundle by version, defaulting to the current one. */
+export function getPromptBundle(version: string = CURRENT_PROMPT_BUNDLE_VERSION): PromptBundle {
+  const bundle = bundles.get(version);
+
+  if (!bundle) {
     throw new RangeError(
-      `Unknown job analysis prompt version "${version}". Known versions: ${known}`
+      `Unknown prompt bundle version "${version}". Known versions: ${listPromptBundleVersions().join(", ")}`
     );
   }
 
-  return prompt;
+  return bundle;
 }

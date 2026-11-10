@@ -1,8 +1,7 @@
 import { Ollama } from "ollama";
 
-import type { JobAnalysisPrompt } from "../prompts/job-analysis.prompt";
-import { getJobAnalysisPrompt } from "../prompts/prompt-registry";
-import { JobAnalysisJsonSchema } from "../schemas/job-analysis.schema.js";
+import type { PromptBundle } from "../prompts/prompt-bundle";
+import { getPromptBundle } from "../prompts/prompt-registry";
 import { AIResult } from "../types/ai-execution";
 import { DEFAULT_PROMPT_STRATEGY } from "../types/prompt-strategy";
 import {
@@ -54,13 +53,18 @@ export class OllamaProvider implements LlmProvider {
   private readonly model: string;
   private readonly timeoutMs: number;
   private readonly maxOutputTokens: number;
-  private readonly prompt: JobAnalysisPrompt;
+  /**
+   * The whole bundle: prompt text, examples and the output JSON Schema come
+   * from the same release, so an old prompt is never run against a newer
+   * output contract.
+   */
+  private readonly bundle: PromptBundle;
 
   constructor(options: OllamaProviderOptions = {}) {
     this.model = options.model ?? DEFAULT_OLLAMA_MODEL;
     // Throws for an unknown version, so a typo fails at startup, not on
     // the first request.
-    this.prompt = getJobAnalysisPrompt(options.promptVersion);
+    this.bundle = getPromptBundle(options.promptVersion);
     this.timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
     this.maxOutputTokens = options.maxOutputTokens ?? DEFAULT_MAX_OUTPUT_TOKENS;
 
@@ -94,7 +98,7 @@ export class OllamaProvider implements LlmProvider {
 
     // What to say to the model is decided by the prompt module, not here.
     const strategy = options.strategy ?? DEFAULT_PROMPT_STRATEGY;
-    const messages = this.prompt.buildMessages(
+    const messages = this.bundle.buildMessages(
       {
         jobDescription: description,
         companyContext: options.companyContext,
@@ -110,7 +114,7 @@ export class OllamaProvider implements LlmProvider {
         messages,
 
         // Tell Ollama to enforce this JSON structure.
-        format: JobAnalysisJsonSchema,
+        format: this.bundle.outputJsonSchema,
 
         stream: false,
 
@@ -152,7 +156,9 @@ export class OllamaProvider implements LlmProvider {
         inputTokens: response.prompt_eval_count ?? 0,
         outputTokens: response.eval_count ?? 0,
         durationMs: Date.now() - startTime,
-        promptVersion: this.prompt.version,
+        promptVersion: this.bundle.version,
+        // Tells the service which contract to validate this output against.
+        schemaVersion: this.bundle.schemaVersion,
         promptStrategy: strategy,
       },
     };

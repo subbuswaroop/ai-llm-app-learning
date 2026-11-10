@@ -8,7 +8,7 @@ All numbers are from one run, saved in [`evals/results/strategy-comparison-2026-
 
 ## Setup
 
-- **Model:** `gemma4` through Ollama, temperature 0.1, output limit 1500 tokens. **Prompt version:** 1.0.0.
+- **Model:** `gemma4` through Ollama, temperature 0.1, output limit 1500 tokens. **Prompt bundle:** 1.0.0 (prompt 1.0.0 with output schema 1.0.0, the original three-level contract). Reproduce it with `npm run eval:strategies -- --prompt-version 1.0.0`; without that flag the current bundle is used.
 - **Strategies:** identical system prompt and real input. Zero-shot sends no examples; few-shot adds 3 examples. A test checks that nothing else differs.
 - **Cases:** 9 labelled job descriptions ([`evals/job-analysis.cases.ts`](../evals/job-analysis.cases.ts)): clear junior, mid and senior roles; senior implied by scope; a posting where the company context mentions unrelated technologies; a posting containing instructions aimed at the model; an ambiguous 2-4 year role; a one-line posting; and a long noisy posting. None of the case texts appear in the few-shot examples.
 - **Runs:** each case x each strategy x 3 runs = 54 calls. Strategies alternate which goes first. A warm-up call (not recorded) loads the model first.

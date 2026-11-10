@@ -5,7 +5,7 @@ import {
 } from "../evals/injection-checks";
 import { injectionCases, maliciousDescription } from "../evals/injection.cases";
 import { OllamaProvider } from "../src/llm/ollama.provider";
-import { getJobAnalysisPrompt } from "../src/prompts/prompt-registry";
+import { getPromptBundle } from "../src/prompts/prompt-registry";
 import { JobAnalysisService } from "../src/services/job-analysis.service";
 import { PROMPT_STRATEGIES } from "../src/types/prompt-strategy";
 
@@ -16,7 +16,7 @@ import { PROMPT_STRATEGIES } from "../src/types/prompt-strategy";
 const count = (text: string, part: string) => text.split(part).length - 1;
 // These tests run against whichever prompt version is current, so they keep
 // protecting the prompt that is actually in use when a new version ships.
-const prompt = getJobAnalysisPrompt();
+const prompt = getPromptBundle();
 const CURRENT_SYSTEM_PROMPT = prompt.buildMessages({ jobDescription: "x" })[0]!.content;
 
 describe.each(PROMPT_STRATEGIES)("malicious job description (%s)", (strategy) => {

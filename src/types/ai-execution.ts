@@ -7,6 +7,12 @@ export interface AIExecutionMetadata {
   durationMs: number;
   /** Version of the prompt that produced this result, for reproducibility. */
   promptVersion?: string;
+  /**
+   * Version of the output schema the model was held to. The service validates
+   * the response against this same version, not against whichever schema is
+   * current. When absent, the current schema is used.
+   */
+  schemaVersion?: string;
   /** Whether few-shot examples were included in the prompt. */
   promptStrategy?: PromptStrategy;
 }

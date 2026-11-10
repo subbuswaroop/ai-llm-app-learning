@@ -16,8 +16,8 @@ import {
   OllamaProvider,
 } from "../src/llm/ollama.provider";
 import {
-  CURRENT_JOB_ANALYSIS_PROMPT_VERSION,
-  getJobAnalysisPrompt,
+  CURRENT_PROMPT_BUNDLE_VERSION,
+  getPromptBundle,
 } from "../src/prompts/prompt-registry";
 import { JobAnalysisJsonSchema } from "../src/schemas/job-analysis.schema";
 
@@ -117,7 +117,7 @@ describe("OllamaProvider: prompt", () => {
     await provider.analyzeJobDescription("Senior Go engineer");
 
     expect(chat.mock.calls[0]?.[0].messages).toEqual(
-      getJobAnalysisPrompt().buildMessages({ jobDescription: "Senior Go engineer" }),
+      getPromptBundle().buildMessages({ jobDescription: "Senior Go engineer" }),
     );
   });
 
@@ -188,7 +188,7 @@ describe("OllamaProvider: prompt", () => {
 
     const { metadata } = await provider.analyzeJobDescription("Any job");
 
-    expect(metadata.promptVersion).toBe(CURRENT_JOB_ANALYSIS_PROMPT_VERSION);
+    expect(metadata.promptVersion).toBe(CURRENT_PROMPT_BUNDLE_VERSION);
   });
 
   it("rejects an unknown prompt version when constructed, not on first use", () => {
@@ -203,6 +203,66 @@ describe("OllamaProvider: prompt", () => {
 
     expect(source).not.toMatch(/technical recruiter/i);
     expect(source).not.toMatch(/role:\s*["']system["']/);
+  });
+});
+
+describe("OllamaProvider: prompt bundle", () => {
+  const seniorityEnum = (request: { format: object }) =>
+    (request.format as { properties: { seniority: { enum: string[] } } }).properties.seniority.enum;
+
+  const providerFor = (promptVersion?: string) => {
+    const chat = vi.fn().mockResolvedValue(ollamaReply(JSON.stringify(validAnalysis)));
+    const provider = new OllamaProvider({ client: { chat } as never, promptVersion });
+    return { provider, chat };
+  };
+
+  it("sends the current bundle's own JSON Schema by default", async () => {
+    const { provider, chat } = providerFor();
+
+    await provider.analyzeJobDescription("Any job");
+
+    expect(chat.mock.calls[0]?.[0].format).toBe(getPromptBundle().outputJsonSchema);
+    expect(seniorityEnum(chat.mock.calls[0]![0])).toEqual(["junior", "mid", "senior", "unknown"]);
+  });
+
+  it("sends the ORIGINAL three-level schema for an old prompt version, not the current one", async () => {
+    // The reason bundles exist: an old prompt must run under the output
+    // contract it was released with, or old results cannot be reproduced.
+    const { provider, chat } = providerFor("1.0.0");
+
+    await provider.analyzeJobDescription("Any job");
+
+    expect(seniorityEnum(chat.mock.calls[0]![0])).toEqual(["junior", "mid", "senior"]);
+  });
+
+  it("sends the old bundle's prompt, examples and schema together", async () => {
+    const { provider, chat } = providerFor("1.0.0");
+    const bundle = getPromptBundle("1.0.0");
+
+    await provider.analyzeJobDescription("Any job");
+
+    const request = chat.mock.calls[0]![0];
+    expect(request.messages).toEqual(bundle.buildMessages({ jobDescription: "Any job" }));
+    expect(request.format).toBe(bundle.outputJsonSchema);
+    expect(request.messages[0].content).not.toContain("unknown");
+  });
+
+  it("reports the schema version it used, so the result can be validated under it", async () => {
+    const old = await providerFor("1.0.0").provider.analyzeJobDescription("Any job");
+    const current = await providerFor().provider.analyzeJobDescription("Any job");
+
+    expect(old.metadata).toMatchObject({ promptVersion: "1.0.0", schemaVersion: "1.0.0" });
+    expect(current.metadata).toMatchObject({ promptVersion: "1.1.0", schemaVersion: "2.0.0" });
+  });
+
+  it("keeps different JSON Schemas for different versions of the same provider", async () => {
+    const a = providerFor("1.0.0");
+    const b = providerFor("1.1.0");
+
+    await a.provider.analyzeJobDescription("Any job");
+    await b.provider.analyzeJobDescription("Any job");
+
+    expect(a.chat.mock.calls[0]![0].format).not.toEqual(b.chat.mock.calls[0]![0].format);
   });
 });
 

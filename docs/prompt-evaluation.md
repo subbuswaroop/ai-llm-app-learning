@@ -6,25 +6,37 @@ The schema forced `seniority` to be `junior`, `mid` or `senior`. For a posting t
 
 ## The change
 
-1. **Schema:** `seniority` now also accepts `"unknown"`, and the JSON Schema description sent to the model says to use it when there is no clear evidence and "Do not guess".
-2. **Prompt 1.1.0:** the seniority rule now allows `"unknown"`. Prompt 1.0.0 is unchanged, because results are recorded against a version and editing it would make them unreproducible. A test checks that 1.1.0 differs from 1.0.0 in exactly one line.
+Three prompt bundles are involved. A bundle is the prompt text, the examples and the output schema, released together (see the README, "Prompt bundles"):
+
+| Bundle | Prompt | Output schema | Meaning |
+|---|---|---|---|
+| 1.0.0 | original | 1.0.0: junior, mid, senior | The original behaviour. The contract gives the model no way to say it does not know. |
+| 1.0.1 | original text | 2.0.0: also allows unknown | "Just allow unknown in the schema." Evaluated and not adopted. |
+| 1.1.0 | allows unknown, plus an example showing it | 2.0.0 | Current. |
+
+1. **Schema 2.0.0:** `seniority` also accepts `"unknown"`, and the JSON Schema description sent to the model says to use it when there is no clear evidence and "Do not guess".
+2. **Prompt 1.1.0:** the seniority rule now allows `"unknown"`. A test checks that 1.1.0 differs from 1.0.0 in exactly one line.
 3. **A new few-shot example** (1.1.0 only) shows `unknown` together with an empty skills list.
+4. **Older bundles are never changed.** Each bundle runs under its own schema, and the service validates a response under the schema version the provider reports, so an old prompt is not judged by a newer contract.
 
-## Did it work? 1.0.0 vs 1.1.0
+## Did it work? 1.0.0 vs 1.0.1 vs 1.1.0
 
-Same two postings that give no evidence of a level (`missing-seniority`, `very-sparse`), same schema, both strategies, 3 runs each. Reproduce with `npm run eval:versions`; raw rows in [`evals/results/prompt-versions-latest.json`](../evals/results/prompt-versions-latest.json).
+Same two postings that give no evidence of a level (`missing-seniority`, `very-sparse`), both strategies, 3 runs each, each bundle under its own schema. Reproduce with `npm run eval:versions`; raw rows in [`evals/results/prompt-versions-latest.json`](../evals/results/prompt-versions-latest.json).
 
-| Prompt | Strategy | Answered | Guessed a level | Said unknown |
+| Bundle | Strategy | Answered | Guessed a level | Said unknown |
 |---|---|---|---|---|
-| 1.0.0 | zero-shot | 6 | **6** | 0 |
-| 1.0.0 | few-shot | 6 | **6** | 0 |
-| 1.1.0 | zero-shot | 6 | **0** | 6 |
-| 1.1.0 | few-shot | 6 | **0** | 6 |
+| 1.0.0 (schema 1.0.0) | zero-shot | 6 | **6** | 0 |
+| 1.0.0 (schema 1.0.0) | few-shot | 6 | **6** | 0 |
+| 1.0.1 (schema 2.0.0, old prompt) | zero-shot | 6 | **6** | 0 |
+| 1.0.1 (schema 2.0.0, old prompt) | few-shot | 6 | **6** | 0 |
+| 1.1.0 (schema 2.0.0, new prompt) | zero-shot | 6 | **0** | 6 |
+| 1.1.0 (schema 2.0.0, new prompt) | few-shot | 6 | **0** | 6 |
 
-Two things worth noting:
+Things worth noting:
 
-- **Allowing `unknown` in the schema was not enough.** In every 1.0.0 run the schema already accepted `unknown`, and the model never used it, because the prompt told it to choose one of three. The prompt had to change too.
-- **The forced guesses were arbitrary.** For the one-line "knows Python" posting, 1.0.0 answered `junior` in some runs and `mid` in others. There was nothing in the text to base either on.
+- **Allowing `unknown` in the schema was not enough.** Bundle 1.0.1 allows `unknown` in its schema, and the model never used it (12 of 12 guesses), because the prompt still told it to choose one of three. The prompt had to change too. Bundle 1.0.0 is not a fair test of this, because its schema does not allow `unknown` at all, so the model cannot say it.
+- **The forced guesses were arbitrary.** For the one-line "knows Python" posting, 1.0.0 and 1.0.1 answered `junior` in some runs and `mid` in others. There was nothing in the text to base either on.
+- **A correction to the first version of this experiment.** I first ran it before bundles existed, with "1.0.0" meaning the original prompt text under the new schema. That combination is now bundle 1.0.1, and re-running it with explicit bundles gave the same result (12 of 12 guesses). Bundle 1.0.0, under its real original schema, is the new third arm.
 
 ## Evaluation of prompt 1.1.0
 

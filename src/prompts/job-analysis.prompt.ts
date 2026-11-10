@@ -1,11 +1,3 @@
-import {
-  DEFAULT_PROMPT_STRATEGY,
-  isPromptStrategy,
-  PROMPT_STRATEGIES,
-  type PromptStrategy,
-} from "../types/prompt-strategy";
-import type { JobAnalysisExample } from "./job-analysis.examples";
-
 /** A single chat message. Matches the shape chat APIs (Ollama, OpenAI) expect. */
 export interface ChatMessage {
   role: "system" | "user" | "assistant";
@@ -16,15 +8,6 @@ export interface JobAnalysisPromptInput {
   jobDescription: string;
   /** Optional background about the hiring company. */
   companyContext?: string;
-}
-
-/** A versioned way of turning a job-analysis request into chat messages. */
-export interface JobAnalysisPrompt {
-  readonly version: string;
-  buildMessages(
-    input: JobAnalysisPromptInput,
-    strategy?: PromptStrategy
-  ): ChatMessage[];
 }
 
 /**
@@ -71,9 +54,27 @@ export const JOB_ANALYSIS_SYSTEM_PROMPT_V1_1 = JOB_ANALYSIS_SYSTEM_PROMPT_V1.rep
  * Any `<` that starts one of our tag names (opening, closing, with stray
  * whitespace or in any case) becomes `[`, so the text is still readable but
  * can no longer act as a delimiter.
+ *
+ * Lookalikes are handled too. The text is first folded with Unicode NFKC, so
+ * a fullwidth `＜` becomes `<`. Invisible format characters (zero-width space
+ * and similar) are tolerated inside and around the tag. NFKC also rewrites
+ * other compatibility characters in the text, for example `™` to `TM` and
+ * `ﬁ` to `fi`. That is harmless for job descriptions and plain ASCII is
+ * unchanged.
+ *
+ * Not handled: escaped forms such as `&lt;/job_description&gt;` or
+ * `</job_description>`. They are not tags as text, and we do not
+ * decode them.
  */
+const INVISIBLE = "\\p{Cf}*";
+const spelled = (name: string) => name.split("").join(INVISIBLE);
+const DELIMITER_TAG = new RegExp(
+  `<([\\s\\p{Cf}]*\\/?[\\s\\p{Cf}]*(?:${spelled("job_description")}|${spelled("company_context")})(?![\\p{L}\\p{N}_]))`,
+  "giu"
+);
+
 export function neutralizeDelimiters(text: string): string {
-  return text.replace(/<(\s*\/?\s*(?:job_description|company_context)\b)/gi, "[$1");
+  return text.normalize("NFKC").replace(DELIMITER_TAG, "[$1");
 }
 
 /** Formats one request the same way for real input and for few-shot examples. */
@@ -92,55 +93,4 @@ export function formatUserMessage(input: JobAnalysisPromptInput): string {
   );
 
   return parts.join("\n\n");
-}
-
-export interface CreateJobAnalysisPromptConfig {
-  version: string;
-  systemPrompt: string;
-  /** Few-shot examples. Use an empty array for a zero-shot prompt. */
-  examples: readonly JobAnalysisExample[];
-}
-
-/**
- * Builds a prompt definition. Messages are laid out as:
- *   system, then (user, assistant) for each example, then the real user input.
- * Each example is formatted exactly like the real input so the model sees a
- * consistent pattern, and its answer is the JSON we want back.
- *
- * The strategy decides whether the examples are included. Zero-shot sends
- * the identical system prompt and real input with no examples, so the only
- * difference between the two strategies is the examples themselves.
- */
-export function createJobAnalysisPrompt(
-  config: CreateJobAnalysisPromptConfig
-): JobAnalysisPrompt {
-  return {
-    version: config.version,
-
-    buildMessages(input, strategy = DEFAULT_PROMPT_STRATEGY) {
-      if (!isPromptStrategy(strategy)) {
-        throw new RangeError(
-          `Unknown prompt strategy "${String(strategy)}". ` +
-            `Known strategies: ${PROMPT_STRATEGIES.join(", ")}`
-        );
-      }
-
-      const messages: ChatMessage[] = [
-        { role: "system", content: config.systemPrompt },
-      ];
-
-      const examples = strategy === "few-shot" ? config.examples : [];
-
-      for (const example of examples) {
-        messages.push(
-          { role: "user", content: formatUserMessage(example) },
-          { role: "assistant", content: JSON.stringify(example.output) }
-        );
-      }
-
-      messages.push({ role: "user", content: formatUserMessage(input) });
-
-      return messages;
-    },
-  };
 }

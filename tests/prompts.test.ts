@@ -5,15 +5,15 @@ import {
   jobAnalysisExamplesWithUnknown,
 } from "../src/prompts/job-analysis.examples";
 import {
-  createJobAnalysisPrompt,
   formatUserMessage,
   JOB_ANALYSIS_SYSTEM_PROMPT_V1,
   JOB_ANALYSIS_SYSTEM_PROMPT_V1_1,
   neutralizeDelimiters,
 } from "../src/prompts/job-analysis.prompt";
+import { createPromptBundle } from "../src/prompts/prompt-bundle";
 import {
-  CURRENT_JOB_ANALYSIS_PROMPT_VERSION,
-  getJobAnalysisPrompt,
+  CURRENT_PROMPT_BUNDLE_VERSION,
+  getPromptBundle,
 } from "../src/prompts/prompt-registry";
 import { JobAnalysisSchema } from "../src/schemas/job-analysis.schema";
 
@@ -33,7 +33,7 @@ describe("system prompt", () => {
   });
 
   it("is the first message, and appears exactly once", () => {
-    const messages = getJobAnalysisPrompt("1.0.0").buildMessages({ jobDescription: "A job" });
+    const messages = getPromptBundle("1.0.0").buildMessages({ jobDescription: "A job" });
 
     expect(messages[0]).toEqual({
       role: "system",
@@ -45,7 +45,7 @@ describe("system prompt", () => {
 
 describe("dynamic job description", () => {
   it("puts the job description in the final user message, inside tags", () => {
-    const messages = getJobAnalysisPrompt("1.0.0").buildMessages({
+    const messages = getPromptBundle("1.0.0").buildMessages({
       jobDescription: "  Senior Go engineer, 8 years.  ",
     });
 
@@ -57,7 +57,7 @@ describe("dynamic job description", () => {
   });
 
   it("builds a different final message for a different job description", () => {
-    const prompt = getJobAnalysisPrompt("1.0.0");
+    const prompt = getPromptBundle("1.0.0");
 
     const a = prompt.buildMessages({ jobDescription: "Role A" }).at(-1)!.content;
     const b = prompt.buildMessages({ jobDescription: "Role B" }).at(-1)!.content;
@@ -68,7 +68,7 @@ describe("dynamic job description", () => {
   });
 
   it("is deterministic: the same input always gives the same messages", () => {
-    const prompt = getJobAnalysisPrompt("1.0.0");
+    const prompt = getPromptBundle("1.0.0");
     const input = { jobDescription: "Same job", companyContext: "Same company" };
 
     expect(prompt.buildMessages(input)).toEqual(prompt.buildMessages(input));
@@ -77,7 +77,7 @@ describe("dynamic job description", () => {
 
 describe("optional company context", () => {
   it("includes company context in its own tags, before the job description", () => {
-    const content = getJobAnalysisPrompt("1.0.0")
+    const content = getPromptBundle("1.0.0")
       .buildMessages({ jobDescription: "A job", companyContext: "A fintech startup." })
       .at(-1)!.content;
 
@@ -90,7 +90,7 @@ describe("optional company context", () => {
   it.each([undefined, "", "   ", "\n\t "])(
     "leaves the company_context section out when it is %j",
     (companyContext) => {
-      const content = getJobAnalysisPrompt("1.0.0")
+      const content = getPromptBundle("1.0.0")
         .buildMessages({ jobDescription: "A job", companyContext })
         .at(-1)!.content;
 
@@ -100,7 +100,7 @@ describe("optional company context", () => {
 });
 
 describe("few-shot examples", () => {
-  const prompt = getJobAnalysisPrompt("1.0.0");
+  const prompt = getPromptBundle("1.0.0");
   const messages = prompt.buildMessages({ jobDescription: "The real job" });
 
   it("lays messages out as system, (user, assistant) per example, then the real user input", () => {
@@ -154,8 +154,9 @@ describe("few-shot examples", () => {
   });
 
   it("supports zero-shot: no examples gives just system and user", () => {
-    const zeroShot = createJobAnalysisPrompt({
+    const zeroShot = createPromptBundle({
       version: "test",
+      schemaVersion: "2.0.0",
       systemPrompt: "SYSTEM",
       examples: [],
     });
@@ -168,7 +169,7 @@ describe("few-shot examples", () => {
 });
 
 describe("prompt strategy", () => {
-  const prompt = getJobAnalysisPrompt("1.0.0");
+  const prompt = getPromptBundle("1.0.0");
   const input = { jobDescription: "The real job", companyContext: "Some company" };
 
   it("zero-shot has no examples: just the system prompt and the real input", () => {
@@ -248,8 +249,9 @@ describe("prompt injection hardening", () => {
   });
 
   it("neutralizes delimiters in few-shot examples too", () => {
-    const prompt = createJobAnalysisPrompt({
+    const prompt = createPromptBundle({
       version: "test",
+      schemaVersion: "2.0.0",
       systemPrompt: "SYSTEM",
       examples: [
         {
@@ -278,10 +280,10 @@ describe("prompt version 1.0.0 stays frozen", () => {
 });
 
 describe("prompt version 1.1.0 (unknown seniority)", () => {
-  const prompt = getJobAnalysisPrompt("1.1.0");
+  const prompt = getPromptBundle("1.1.0");
 
   it("is the current version", () => {
-    expect(CURRENT_JOB_ANALYSIS_PROMPT_VERSION).toBe("1.1.0");
+    expect(CURRENT_PROMPT_BUNDLE_VERSION).toBe("1.1.0");
   });
 
   it("lets the model answer unknown and tells it not to guess", () => {
@@ -336,19 +338,19 @@ describe("prompt version 1.1.0 (unknown seniority)", () => {
 
 describe("prompt version", () => {
   it("exposes the version on the prompt", () => {
-    expect(getJobAnalysisPrompt().version).toBe(CURRENT_JOB_ANALYSIS_PROMPT_VERSION);
+    expect(getPromptBundle().version).toBe(CURRENT_PROMPT_BUNDLE_VERSION);
   });
 
   it("returns a specific registered version when asked", () => {
-    expect(getJobAnalysisPrompt("1.0.0").version).toBe("1.0.0");
+    expect(getPromptBundle("1.0.0").version).toBe("1.0.0");
   });
 
   it("rejects an unknown version and lists the known ones", () => {
-    expect(() => getJobAnalysisPrompt("9.9.9")).toThrow(RangeError);
-    expect(() => getJobAnalysisPrompt("9.9.9")).toThrow(/Known versions: 1\.0\.0/);
+    expect(() => getPromptBundle("9.9.9")).toThrow(RangeError);
+    expect(() => getPromptBundle("9.9.9")).toThrow(/Known versions: 1\.0\.0/);
   });
 
   it("keeps the current version registered", () => {
-    expect(() => getJobAnalysisPrompt(CURRENT_JOB_ANALYSIS_PROMPT_VERSION)).not.toThrow();
+    expect(() => getPromptBundle(CURRENT_PROMPT_BUNDLE_VERSION)).not.toThrow();
   });
 });

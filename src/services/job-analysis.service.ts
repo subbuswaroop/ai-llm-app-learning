@@ -1,6 +1,7 @@
 import { ZodError } from "zod";
 import type { AnalyzeOptions, LlmProvider } from "../llm/llm-provider";
-import { JobAnalysis, JobAnalysisSchema } from "../schemas/job-analysis.schema";
+import type { JobAnalysis } from "../schemas/job-analysis.schema";
+import { CURRENT_OUTPUT_SCHEMA_VERSION, getOutputSchema } from "../schemas/schema-registry";
 import type { AIResult } from "../types/ai-execution";
 
 /** The caller supplied unusable input. Nothing was sent to the LLM. */
@@ -32,7 +33,13 @@ export class MockLlmProvider implements LlmProvider {
   async analyzeJobDescription(): Promise<AIResult<unknown>> {
     return {
       data: structuredClone(MOCK_JOB_ANALYSIS),
-      metadata: { model: "mock", inputTokens: 0, outputTokens: 0, durationMs: 0 },
+      metadata: {
+        model: "mock",
+        inputTokens: 0,
+        outputTokens: 0,
+        durationMs: 0,
+        schemaVersion: CURRENT_OUTPUT_SCHEMA_VERSION,
+      },
     };
   }
 }
@@ -58,7 +65,12 @@ export class JobAnalysisService {
       options
     );
 
-    const validation = JobAnalysisSchema.safeParse(raw);
+    // Validate under the contract the model was actually held to. Using the
+    // current schema here would judge an old prompt's output by a newer
+    // contract. No schemaVersion means "current".
+    const { zod: outputSchema } = getOutputSchema(metadata.schemaVersion);
+
+    const validation = outputSchema.safeParse(raw);
     if (!validation.success) {
       throw new JobAnalysisValidationError(validation.error);
     }

@@ -1,35 +1,27 @@
 import { z } from "zod";
 
+import {
+  JobAnalysisSchemaV2,
+  SeniorityLevelSchemaV2,
+} from "./job-analysis.schema.v2";
+
 /**
- * "unknown" means the job description does not contain enough evidence to
- * pick a level. It exists so the model is never forced to guess: a made-up
- * "mid" for a posting that says nothing about experience looks exactly like
- * a real one downstream.
+ * The CURRENT output contract, which the rest of the application codes
+ * against. The definitions themselves live in frozen, versioned files
+ * (job-analysis.schema.v1.ts, .v2.ts); this file only says which one is
+ * current. When a new schema version is released, point these at it and
+ * keep the old file untouched.
  */
-export const SeniorityLevelSchema = z
-  .enum(["junior", "mid", "senior", "unknown"])
-  .describe(
-    'Seniority level the role is aimed at. Use "unknown" when the job description gives no clear evidence of the level. Do not guess.'
-  );
-
-export const JobAnalysisSchema = z.object({
-  summary: z
-    .string()
-    .trim()
-    .min(1, "Summary must not be empty")
-    .describe("One or two sentence summary of the role"),
-  requiredSkills: z
-    .array(z.string())
-    .describe("Technical skills explicitly required by the job description"),
-  seniority: SeniorityLevelSchema,
-  interviewTopics: z
-    .array(z.string())
-    .describe("Topics worth covering in an interview for this role"),
-});
+export const SeniorityLevelSchema = SeniorityLevelSchemaV2;
+export const JobAnalysisSchema = JobAnalysisSchemaV2;
 
 /**
- * JSON Schema version of JobAnalysisSchema, generated from the Zod schema
- * so the two can never drift apart. Sent to the LLM to constrain its output.
+ * JSON Schema version of the current schema, generated from the Zod schema
+ * so the two can never drift apart.
+ *
+ * Do not send this to a model directly: which JSON Schema a model gets
+ * depends on the prompt bundle's schema version. Use the bundle's
+ * `outputJsonSchema`.
  */
 export const JobAnalysisJsonSchema = z.toJSONSchema(JobAnalysisSchema);
 
